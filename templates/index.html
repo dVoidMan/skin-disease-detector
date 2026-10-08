@@ -175,15 +175,16 @@
         <div class="d-flex justify-content-between align-items-end mb-4 flex-wrap gap-2">
             <div>
                 <h3 class="fw-bold text-dark mb-1">Target Skin Conditions</h3>
-                <p class="text-muted mb-0">Common dermatological disorders recognized by the neural network</p>
+                <p class="text-muted mb-0">Core conditions screened by the neural network &bull; 22 total conditions in Encyclopedia</p>
             </div>
             <a href="{{ url_for('encyclopedia') }}" class="btn btn-outline-primary btn-sm rounded-pill px-3">
-                View Full Encyclopedia <i class="bi bi-arrow-right ms-1"></i>
+                Explore Full Encyclopedia (22) <i class="bi bi-arrow-right ms-1"></i>
             </a>
         </div>
 
         <div class="row g-3">
             {% for key, item in diseases.items() %}
+            {% if item.is_ai_supported %}
             <div class="col-md-6 col-lg-3">
                 <div class="card h-100 border-0 shadow-sm rounded-3 p-3 condition-card">
                     <div class="d-flex justify-content-between align-items-center mb-2">
@@ -191,13 +192,15 @@
                         <span class="badge {{ item.badge_class }} rounded-pill small">{{ item.risk_level }}</span>
                     </div>
                     <p class="text-muted small mb-2 text-truncate-2">{{ item.summary }}</p>
-                    <div class="mt-auto">
+                    <div class="mt-auto d-flex justify-content-between align-items-center">
+                        <span class="badge bg-light text-secondary border small"><i class="bi bi-cpu me-1"></i>AI Screenable</span>
                         <a href="{{ url_for('encyclopedia') }}#{{ key }}" class="text-decoration-none small text-primary fw-semibold">
-                            Read Guide <i class="bi bi-chevron-right"></i>
+                            Guide <i class="bi bi-chevron-right"></i>
                         </a>
                     </div>
                 </div>
             </div>
+            {% endif %}
             {% endfor %}
         </div>
     </div>

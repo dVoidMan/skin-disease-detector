@@ -7,47 +7,101 @@
     <!-- Header -->
     <div class="text-center max-w-700 mx-auto mb-5">
         <span class="badge bg-primary-subtle text-primary fw-semibold px-3 py-2 rounded-pill mb-3">
-            <i class="bi bi-book-half me-1"></i> Medical Knowledge Base
+            <i class="bi bi-book-half me-1"></i> Clinical Medical Knowledge Base
         </span>
-        <h2 class="display-6 fw-bold text-dark mb-2">Skin Disease Encyclopedia</h2>
-        <p class="text-muted">
-            Comprehensive medical overview of common dermatological disorders, their underlying causes, symptoms, and clinically recognized self-care guidelines.
+        <h2 class="display-6 fw-bold text-dark mb-2">Dermatological Disease Encyclopedia</h2>
+        <p class="text-muted mb-4">
+            An extensive clinical reference catalog of common skin disorders, their diagnostic symptoms, underlying pathophysiology, and evidence-based self-care advisories.
         </p>
 
+        <!-- Quick Stats Pill Row -->
+        <div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
+            <span class="badge bg-light text-dark border px-3 py-2 rounded-pill">
+                <i class="bi bi-clipboard2-pulse text-primary me-1"></i> <strong>22</strong> Conditions Documented
+            </span>
+            <span class="badge bg-light text-dark border px-3 py-2 rounded-pill">
+                <i class="bi bi-cpu text-success me-1"></i> <strong>8</strong> AI-Screened Targets
+            </span>
+            <span class="badge bg-light text-dark border px-3 py-2 rounded-pill">
+                <i class="bi bi-shield-check text-info me-1"></i> Clinical Self-Care Guidance
+            </span>
+        </div>
+
         <!-- Search Bar -->
-        <div class="input-group shadow-sm rounded-pill overflow-hidden mt-4 border">
+        <div class="input-group shadow-sm rounded-pill overflow-hidden border">
             <span class="input-group-text bg-white border-0 ps-4 text-muted">
                 <i class="bi bi-search"></i>
             </span>
-            <input type="text" id="disease-search" class="form-control border-0 py-3" placeholder="Search disease by name, symptom, or keyword (e.g. acne, itch, scales)...">
+            <input type="text" id="disease-search" class="form-control border-0 py-3" placeholder="Search conditions by name, symptom, cause, or keyword (e.g. itch, scalp, blister, mole)...">
+            <button class="btn btn-white border-0 pe-4 text-muted" type="button" id="clear-search" title="Clear search">
+                <i class="bi bi-x-circle"></i>
+            </button>
         </div>
+
+        <!-- Category Filter Pills -->
+        <div class="d-flex flex-wrap justify-content-center gap-2 mt-3" id="category-filters">
+            <button type="button" class="btn btn-sm btn-primary rounded-pill px-3 filter-btn active" data-filter="all">All (22)</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3 filter-btn" data-filter="ai-screenable">AI Screenable (8)</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3 filter-btn" data-filter="Autoimmune & Inflammatory">Autoimmune &amp; Inflammatory</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3 filter-btn" data-filter="Infectious">Infectious</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3 filter-btn" data-filter="Skin Cancers & Malignancies">Cancers &amp; Malignancies</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3 filter-btn" data-filter="Acneiform & Sebaceous">Acne &amp; Sebaceous</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3 filter-btn" data-filter="Allergic & Contact">Allergic &amp; Contact</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3 filter-btn" data-filter="Pigmentary">Pigmentary &amp; Benign</button>
+        </div>
+    </div>
+
+    <!-- Active Filter Counter -->
+    <div class="d-flex justify-content-between align-items-center mb-4 px-2">
+        <span class="small text-muted" id="results-count">Showing <strong>22</strong> conditions</span>
+        <a href="{{ url_for('index') }}" class="btn btn-outline-primary btn-sm rounded-pill px-3">
+            <i class="bi bi-camera me-1"></i> Scan Lesion Now
+        </a>
     </div>
 
     <!-- Diseases List -->
     <div class="row g-4" id="disease-list">
         {% for key, d in diseases.items() %}
-        <div class="col-lg-6 disease-card-item" data-keywords="{{ d.name|lower }} {{ d.medical_term|lower }} {{ d.summary|lower }} {{ d.common_symptoms|join(' ')|lower }}">
-            <div id="{{ key }}" class="card border-0 shadow-sm rounded-4 h-100 p-4 p-md-5">
-                <div class="d-flex justify-content-between align-items-start mb-3">
+        <div class="col-lg-6 disease-card-item" 
+             data-key="{{ key }}"
+             data-category="{{ d.category|default('General') }}"
+             data-is-ai="{{ 'true' if d.is_ai_supported else 'false' }}"
+             data-keywords="{{ d.name|lower }} {{ d.medical_term|lower }} {{ d.category|default('')|lower }} {{ d.risk_level|lower }} {{ d.summary|lower }} {{ d.common_symptoms|join(' ')|lower }} {{ d.possible_causes|join(' ')|lower }}">
+            <div id="{{ key }}" class="card border-0 shadow-sm rounded-4 h-100 p-4 p-md-5 position-relative">
+                <!-- Header badges -->
+                <div class="d-flex justify-content-between align-items-start mb-3 flex-wrap gap-2">
                     <div>
-                        <span class="badge {{ d.badge_class }} rounded-pill px-3 py-1 mb-2">
-                            {{ d.risk_level }} Risk
-                        </span>
+                        <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
+                            <span class="badge {{ d.badge_class }} rounded-pill px-3 py-1">
+                                {{ d.risk_level }} Risk
+                            </span>
+                            <span class="badge bg-light text-secondary border rounded-pill px-2 py-1 small">
+                                <i class="bi bi-tag me-1"></i>{{ d.category|default('Dermatology') }}
+                            </span>
+                            {% if d.is_ai_supported %}
+                            <span class="badge bg-primary-subtle text-primary rounded-pill px-2 py-1 small">
+                                <i class="bi bi-cpu me-1"></i>AI Screenable
+                            </span>
+                            {% endif %}
+                        </div>
                         <h3 class="fw-bold text-dark mb-0">{{ d.name }}</h3>
                         <small class="text-muted fst-italic">{{ d.medical_term }}</small>
                     </div>
-                    <a href="{{ url_for('index') }}" class="btn btn-outline-primary btn-sm rounded-pill px-3" title="Test a photo of this condition">
+                    {% if d.is_ai_supported %}
+                    <a href="{{ url_for('index') }}" class="btn btn-outline-primary btn-sm rounded-pill px-3" title="Scan an image with AI">
                         <i class="bi bi-camera me-1"></i> Scan
                     </a>
+                    {% endif %}
                 </div>
 
+                <!-- Clinical Summary -->
                 <p class="text-secondary small mb-4 leading-relaxed">
                     {{ d.summary }}
                 </p>
 
                 <!-- Symptoms -->
                 <div class="mb-3">
-                    <h6 class="fw-bold text-dark mb-2 small"><i class="bi bi-list-check text-primary me-1"></i> Common Symptoms:</h6>
+                    <h6 class="fw-bold text-dark mb-2 small"><i class="bi bi-list-check text-primary me-1"></i> Hallmark Symptoms:</h6>
                     <ul class="list-unstyled mb-0 d-flex flex-column gap-1">
                         {% for s in d.common_symptoms %}
                         <li class="small text-secondary d-flex align-items-start gap-2">
@@ -58,11 +112,26 @@
                     </ul>
                 </div>
 
+                <!-- Causes / Pathophysiology -->
+                {% if d.possible_causes %}
+                <div class="mb-3">
+                    <h6 class="fw-bold text-dark mb-2 small"><i class="bi bi-activity text-secondary me-1"></i> Known Causes &amp; Triggers:</h6>
+                    <ul class="list-unstyled mb-0 d-flex flex-column gap-1">
+                        {% for c in d.possible_causes %}
+                        <li class="small text-muted d-flex align-items-start gap-2">
+                            <i class="bi bi-dash text-secondary fs-6 lh-1 mt-1 flex-shrink-0"></i>
+                            <span>{{ c }}</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+
                 <!-- Self Care -->
                 <div class="p-3 bg-light rounded-3 mb-3">
-                    <h6 class="fw-bold text-dark mb-2 small"><i class="bi bi-heart-pulse text-success me-1"></i> Recommended Self-Care:</h6>
+                    <h6 class="fw-bold text-dark mb-2 small"><i class="bi bi-heart-pulse text-success me-1"></i> Clinical Self-Care &amp; Management:</h6>
                     <ul class="list-unstyled mb-0 d-flex flex-column gap-1">
-                        {% for p in d.self_care_precautions[:3] %}
+                        {% for p in d.self_care_precautions[:4] %}
                         <li class="small text-secondary d-flex align-items-start gap-2">
                             <i class="bi bi-check2 text-success fs-6 mt-1 flex-shrink-0"></i>
                             <span>{{ p }}</span>
@@ -73,8 +142,8 @@
 
                 <!-- Doctor advice -->
                 <div class="mt-auto pt-2">
-                    <div class="small text-dark-emphasis p-3 bg-warning-subtle rounded-3 border border-warning-subtle">
-                        <strong><i class="bi bi-hospital me-1"></i> Clinical Advice:</strong> {{ d.when_to_see_doctor }}
+                    <div class="small text-dark-emphasis p-3 {% if d.risk_level in ['High', 'Critical'] %}bg-danger-subtle border border-danger-subtle{% else %}bg-warning-subtle border border-warning-subtle{% endif %} rounded-3">
+                        <strong><i class="bi {% if d.risk_level in ['High', 'Critical'] %}bi-exclamation-octagon-fill text-danger{% else %}bi-hospital text-warning-emphasis{% endif %} me-1"></i> When to Consult a Physician:</strong> {{ d.when_to_see_doctor }}
                     </div>
                 </div>
             </div>
@@ -82,41 +151,110 @@
         {% endfor %}
     </div>
 
+    <!-- Empty search / filter state -->
     <div id="no-results" class="text-center py-5 d-none">
-        <i class="bi bi-search text-muted fs-1 mb-3"></i>
+        <i class="bi bi-search text-muted fs-1 mb-3 d-block"></i>
         <h5 class="fw-bold text-dark">No conditions matched your search</h5>
-        <p class="text-muted small">Try searching for broader terms like "itch", "red", "rash", or "mole".</p>
+        <p class="text-muted small mb-3">Try searching for broader keywords like "itch", "red", "blister", "rash", or clear your category filter.</p>
+        <button type="button" class="btn btn-outline-primary btn-sm rounded-pill px-3" id="reset-filters-btn">
+            Reset All Filters
+        </button>
     </div>
 </div>
 {% endblock %}
 
 {% block scripts %}
 <script>
-    // Live Search Filter for Encyclopedia
+    // Live Search & Category Filtering for Encyclopedia
     const searchInput = document.getElementById('disease-search');
+    const clearSearchBtn = document.getElementById('clear-search');
     const cards = document.querySelectorAll('.disease-card-item');
     const noResults = document.getElementById('no-results');
+    const resultsCount = document.getElementById('results-count');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const resetFiltersBtn = document.getElementById('reset-filters-btn');
+
+    let activeFilter = 'all';
+
+    function applyFilters() {
+        const query = searchInput ? searchInput.value.trim().toLowerCase() : '';
+        let visibleCount = 0;
+
+        cards.forEach(card => {
+            const keywords = card.getAttribute('data-keywords') || '';
+            const category = card.getAttribute('data-category') || '';
+            const isAi = card.getAttribute('data-is-ai') === 'true';
+
+            let matchesCategory = true;
+            if (activeFilter === 'ai-screenable') {
+                matchesCategory = isAi;
+            } else if (activeFilter !== 'all') {
+                matchesCategory = category.toLowerCase().includes(activeFilter.toLowerCase());
+            }
+
+            const matchesQuery = !query || keywords.includes(query);
+
+            if (matchesCategory && matchesQuery) {
+                card.classList.remove('d-none');
+                visibleCount++;
+            } else {
+                card.classList.add('d-none');
+            }
+        });
+
+        if (visibleCount === 0) {
+            noResults.classList.remove('d-none');
+        } else {
+            noResults.classList.add('d-none');
+        }
+
+        if (resultsCount) {
+            resultsCount.innerHTML = `Showing <strong>${visibleCount}</strong> of <strong>${cards.length}</strong> conditions`;
+        }
+    }
 
     if (searchInput) {
-        searchInput.addEventListener('input', function() {
-            const query = this.value.trim().toLowerCase();
-            let visibleCount = 0;
+        searchInput.addEventListener('input', applyFilters);
+    }
 
-            cards.forEach(card => {
-                const keywords = card.getAttribute('data-keywords');
-                if (!query || keywords.includes(query)) {
-                    card.classList.remove('d-none');
-                    visibleCount++;
+    if (clearSearchBtn) {
+        clearSearchBtn.addEventListener('click', function() {
+            if (searchInput) {
+                searchInput.value = '';
+                searchInput.focus();
+                applyFilters();
+            }
+        });
+    }
+
+    filterButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            filterButtons.forEach(b => {
+                b.classList.remove('btn-primary', 'active');
+                b.classList.add('btn-outline-secondary');
+            });
+            this.classList.remove('btn-outline-secondary');
+            this.classList.add('btn-primary', 'active');
+
+            activeFilter = this.getAttribute('data-filter') || 'all';
+            applyFilters();
+        });
+    });
+
+    if (resetFiltersBtn) {
+        resetFiltersBtn.addEventListener('click', function() {
+            if (searchInput) searchInput.value = '';
+            filterButtons.forEach(b => {
+                if (b.getAttribute('data-filter') === 'all') {
+                    b.classList.remove('btn-outline-secondary');
+                    b.classList.add('btn-primary', 'active');
                 } else {
-                    card.classList.add('d-none');
+                    b.classList.remove('btn-primary', 'active');
+                    b.classList.add('btn-outline-secondary');
                 }
             });
-
-            if (visibleCount === 0) {
-                noResults.classList.remove('d-none');
-            } else {
-                noResults.classList.add('d-none');
-            }
+            activeFilter = 'all';
+            applyFilters();
         });
     }
 </script>

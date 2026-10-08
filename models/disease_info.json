@@ -4,216 +4,658 @@
     "medical_term": "Acne Vulgaris",
     "risk_level": "Low",
     "badge_class": "bg-info",
-    "summary": "Acne is a common inflammatory skin condition that occurs when hair follicles become plugged with oil (sebum) and dead skin cells, often colonized by Cutibacterium acnes bacteria.",
+    "category": "Acneiform & Sebaceous",
+    "is_ai_supported": true,
+    "summary": "Acne is a common inflammatory skin condition that occurs when hair follicles become plugged with sebum (skin oil) and dead skin cells, frequently colonized by Cutibacterium acnes bacteria.",
     "common_symptoms": [
       "Whiteheads (closed plugged pores)",
       "Blackheads (open plugged pores)",
-      "Small red, tender bumps (papules)",
-      "Pimples (pustules) with pus at the tips",
-      "Large, solid, painful lumps beneath the skin (nodules or cysts)"
+      "Small red, tender inflammatory papules",
+      "Pustules (pimples with visible pus at the tip)",
+      "Large, painful, deep nodules or cysts beneath the skin"
     ],
     "possible_causes": [
-      "Excess sebum (oil) production",
-      "Hair follicles clogged by oil and dead skin cells",
+      "Excess sebum (oil) hyper-production by sebaceous glands",
+      "Abnormal follicular keratinization plugging pores",
       "Bacterial colonization (Cutibacterium acnes)",
-      "Hormonal fluctuations (puberty, menstrual cycle, stress)",
-      "Certain medications or pore-clogging cosmetics"
+      "Hormonal fluctuations (puberty, menstrual cycle, androgen surges)",
+      "Pore-clogging cosmetics, friction, and emotional stress"
     ],
     "self_care_precautions": [
-      "Wash your face twice daily with a gentle, non-comedogenic cleanser.",
-      "Avoid scrubbing aggressively or picking/popping pimples to prevent scarring.",
-      "Use over-the-counter topical treatments containing salicylic acid or benzoyl peroxide.",
-      "Choose oil-free, non-comedogenic moisturizers and sunscreens.",
-      "Wash pillowcases and avoid touching your face frequently."
+      "Wash your face twice daily with a gentle, non-comedogenic foaming cleanser.",
+      "Never pick, pop, or squeeze lesions to prevent scarring and deep infection.",
+      "Use over-the-counter topical treatments with salicylic acid, benzoyl peroxide, or adapalene.",
+      "Apply oil-free, non-comedogenic moisturizers and broad-spectrum sunscreen daily.",
+      "Regularly change pillowcases and avoid touching your face."
     ],
-    "when_to_see_doctor": "Consult a dermatologist if over-the-counter treatments do not show improvement after 6–8 weeks, if you experience deep, painful cystic acne, or if dark marks and scars begin forming."
+    "when_to_see_doctor": "Consult a dermatologist if over-the-counter products fail to improve skin after 6–8 weeks, if you suffer from painful cystic lesions, or if marks leave dark hyperpigmentation and pitted scars."
   },
   "eczema": {
     "name": "Eczema",
     "medical_term": "Atopic Dermatitis",
     "risk_level": "Moderate",
     "badge_class": "bg-warning",
-    "summary": "Eczema is a chronic inflammatory skin condition characterized by dry, itchy, red, and swollen patches. It frequently occurs in the folds of the elbows, behind the knees, and on the hands or neck.",
+    "category": "Autoimmune & Inflammatory",
+    "is_ai_supported": true,
+    "summary": "Eczema is a chronic, pruritic inflammatory skin condition characterized by dry, red, and swollen skin patches. It frequently occurs in the flexural folds of elbows, knees, wrists, and neck.",
     "common_symptoms": [
-      "Intense itching (pruritus), especially at night",
-      "Dry, cracked, or scaly skin patches",
-      "Red, brown, or grayish-purple skin discoloration",
-      "Small, raised bumps that may leak fluid and crust over when scratched",
-      "Raw, sensitive, or swollen skin from repeated scratching"
+      "Intense, debilitating itching (pruritus), often worsening at night",
+      "Dry, cracked, erythematous, or lichenified (thickened) skin patches",
+      "Red, brown, or purplish-gray skin discoloration",
+      "Small raised vesicles that weep serous fluid and crust over when scratched",
+      "Hypersensitive, excoriated skin prone to secondary bacterial infection"
     ],
     "possible_causes": [
-      "Genetics and impaired epidermal barrier function (filaggrin deficiency)",
-      "Immune system hyper-reactivity",
-      "Environmental allergens (dust mites, pollen, pet dander)",
-      "Irritants (harsh soaps, detergents, wool fabrics)",
-      "Cold, dry weather and psychological stress"
+      "Genetic impairment of epidermal barrier function (filaggrin gene mutations)",
+      "Dysregulated Th2-skewed immune hypersensitivity",
+      "Environmental allergens (dust mites, pet dander, pollens, molds)",
+      "Chemical irritants (harsh detergents, synthetic fragrances, wool fabrics)",
+      "Climatic extremes, low humidity, and psychological stress"
     ],
     "self_care_precautions": [
-      "Moisturize frequently with thick, fragrance-free ointments or creams (e.g., ceramide-based).",
-      "Take short, lukewarm showers rather than hot baths (limit to 10 minutes).",
-      "Apply moisturizer immediately within 3 minutes of bathing to lock in moisture.",
-      "Use mild, soap-free cleansers and fragrance-free laundry detergents.",
-      "Wear loose, soft cotton clothing and keep fingernails trimmed to minimize scratch trauma."
+      "Apply thick, ceramide-rich ointments or creams multiple times daily.",
+      "Take brief (under 10 minutes) lukewarm baths and avoid hot water.",
+      "Lock in hydration by moisturizing within 3 minutes of bathing (Soak and Seal).",
+      "Wear breathable, loose 100% cotton garments and avoid wool.",
+      "Keep fingernails short and smooth to minimize nocturnal scratch trauma."
     ],
-    "when_to_see_doctor": "Seek medical attention if itching severely disrupts sleep or daily activities, if skin shows signs of secondary infection (yellow crusting, pus, increased warmth/pain), or if symptoms spread rapidly."
+    "when_to_see_doctor": "Seek medical attention if itching severely disturbs sleep, if lesions exhibit signs of bacterial superinfection (honey-colored crusts, yellow pus, spreading warmth), or if widespread flares resist barrier creams."
   },
   "psoriasis": {
     "name": "Psoriasis",
     "medical_term": "Psoriasis Vulgaris",
     "risk_level": "Moderate",
     "badge_class": "bg-warning",
-    "summary": "Psoriasis is an autoimmune condition that accelerates the life cycle of skin cells, leading to rapid cell buildup on the surface that forms thick, silvery scales and itchy, dry, red patches.",
+    "category": "Autoimmune & Inflammatory",
+    "is_ai_supported": true,
+    "summary": "Psoriasis is a chronic systemic immune-mediated disorder that dramatically speeds up epidermal turnover, causing skin cells to build up rapidly into thick, silvery-scaled plaques on an erythematous base.",
     "common_symptoms": [
-      "Well-demarcated red patches covered with thick, silvery scales",
-      "Dry, cracked skin that may bleed",
-      "Itching, burning sensations, or soreness",
-      "Thickened, pitted, or ridged fingernails",
-      "Swollen and stiff joints (in cases of psoriatic arthritis)"
+      "Sharply demarcated red or violaceous plaques covered with thick, silvery-white scales",
+      "Auspitz sign (pinpoint bleeding when silvery scales are removed)",
+      "Dry, cracked cutaneous plaques that burn, sting, or bleed",
+      "Nail dystrophy including pitting, subungual hyperkeratosis, and oil-drop discoloration",
+      "Stiff, painful, swollen joints (psoriatic arthritis in up to 30% of patients)"
     ],
     "possible_causes": [
-      "Autoimmune dysregulation (overactive T-cells attacking healthy skin tissue)",
-      "Genetic predisposition",
-      "Triggers including skin injuries (Koebner phenomenon), stress, infections, and cold weather",
-      "Certain medications (beta-blockers, lithium)"
+      "Autoimmune dysregulation mediated by overactive T-helper cells (IL-17 and IL-23 pathways)",
+      "Genetic predisposition involving HLA-Cw6 alleles",
+      "Koebner phenomenon (new lesions triggered by physical skin trauma, cuts, or sunburn)",
+      "Systemic triggers including streptococcal throat infections, beta-blockers, and stress",
+      "Tobacco smoking and excessive alcohol consumption"
     ],
     "self_care_precautions": [
-      "Keep skin thoroughly moisturized with rich ointments or petroleum jelly.",
-      "Take warm baths with colloidal oatmeal or Epsom salts to soothe irritation.",
-      "Obtain brief, controlled exposure to natural sunlight (consult your doctor first).",
-      "Avoid known personal triggers such as alcohol, smoking, and chronic stress.",
-      "Do not pick or aggressively peel scales, as this can worsen flare-ups."
+      "Maintain deep hydration with heavy emollient balms or petroleum jelly.",
+      "Soak in lukewarm baths infused with colloidal oatmeal or Epsom salts.",
+      "Obtain brief, measured exposures to natural sunlight under dermatological guidance.",
+      "Avoid picking or vigorously peeling plaques to prevent spreading lesions.",
+      "Implement stress-reduction techniques and avoid tobacco smoke."
     ],
-    "when_to_see_doctor": "Consult a healthcare provider for prescription topical corticosteroids, phototherapy, or biologic therapies, especially if patches cover large areas or accompany joint pain."
+    "when_to_see_doctor": "Consult a dermatologist to explore targeted prescription therapies (topical corticosteroids, vitamin D analogs, phototherapy, or biologic monoclonal antibodies) if plaques are extensive or accompanied by joint pain."
   },
   "ringworm": {
     "name": "Ringworm",
     "medical_term": "Tinea Corporis",
     "risk_level": "Moderate",
     "badge_class": "bg-warning",
-    "summary": "Despite its name, ringworm is not caused by a worm. It is a contagious superficial fungal infection caused by dermatophytes, presenting as circular, raised, red rings with clearer skin in the center.",
+    "category": "Infectious & Fungal",
+    "is_ai_supported": true,
+    "summary": "Ringworm is a contagious superficial fungal infection caused by keratinophilic dermatophytes. It classically presents as an annular, circular red rash with active raised borders and central clearing.",
     "common_symptoms": [
-      "A circular or ring-shaped rash with raised, scaly borders",
-      "Clear or normal-looking skin inside the ring perimeter",
-      "Pruritus (itching) and mild stinging sensation",
-      "Overlapping or expanding circular lesions"
+      "Circular or ring-shaped lesion with raised, erythematous, scaly borders",
+      "Central clearing giving the lesion a distinctive 'donut' or ring appearance",
+      "Moderate to severe pruritus (itching) and mild local stinging",
+      "Multiple overlapping or centrifugally expanding rings on trunk or limbs"
     ],
     "possible_causes": [
-      "Direct skin-to-skin contact with an infected person",
-      "Contact with infected animals (cats, dogs, cattle)",
-      "Contact with contaminated objects (towels, bedding, athletic equipment)",
-      "Warm, humid environments and excessive perspiration"
+      "Infection by dermatophyte fungi (Trichophyton, Microsporum, or Epidermophyton species)",
+      "Direct skin-to-skin transmission with an infected individual",
+      "Zoonotic transmission from infected pets (cats, dogs, farm animals)",
+      "Fomite spread via shared athletic mats, damp towels, or clothing",
+      "Excessive sweating and humid tropical microclimates"
     ],
     "self_care_precautions": [
-      "Apply over-the-counter topical antifungal cream (e.g., clotrimazole, terbinafine, miconazole) as directed.",
-      "Continue antifungal application for at least 1–2 weeks after symptoms clear to prevent recurrence.",
-      "Keep the affected skin clean and completely dry.",
-      "Do not share towels, clothing, hairbrushes, or bedding with others.",
-      "Wash infected linens and workout clothes in hot water."
+      "Apply over-the-counter topical antifungal creams (terbinafine, clotrimazole, ketoconazole) twice daily.",
+      "Extend antifungal application at least 1–2 weeks beyond complete visual disappearance of the rash.",
+      "Keep affected skin meticulously clean and dry throughout the day.",
+      "Do not share personal clothing, towels, bedding, or athletic gear.",
+      "Launder active clothing, bedsheets, and towels in hot water with laundry sanitizer."
     ],
-    "when_to_see_doctor": "Seek medical evaluation if the rash does not improve after 2 weeks of antifungal treatment, if it spreads to the scalp or nails, or if severe pain or swelling develops."
+    "when_to_see_doctor": "Seek clinical evaluation if the ring does not improve within 2 weeks of compliant topical antifungal therapy, if it extends to the scalp or beard, or if secondary bacterial infection develops."
   },
   "vitiligo": {
     "name": "Vitiligo",
     "medical_term": "Vitiligo",
     "risk_level": "Low",
     "badge_class": "bg-info",
-    "summary": "Vitiligo is a chronic autoimmune condition in which the immune system mistakenly attacks melanocytes (pigment-producing cells), resulting in smooth, depigmented white patches on various areas of the body.",
+    "category": "Pigmentary & Autoimmune",
+    "is_ai_supported": true,
+    "summary": "Vitiligo is a non-contagious chronic autoimmune disorder where cytotoxic T-lymphocytes selectively attack and destroy melanocytes, producing sharply defined macules and patches of milky-white depigmentation.",
     "common_symptoms": [
-      "Loss of skin color in blotches, typically appearing first on hands, face, and around body openings",
-      "Premature whitening or graying of hair on the scalp, eyelashes, eyebrows, or beard",
-      "Loss of color in the tissues that line the inside of the mouth and nose (mucous membranes)",
-      "Often symmetrical appearance on both sides of the body"
+      "Symmetrical milky-white, chalk-like depigmented patches with normal skin texture",
+      "Common predilection for peri-orificial areas (around eyes, mouth), hands, wrists, and feet",
+      "Poliosis (premature whitening or graying of scalp hair, eyebrows, eyelashes, or beard)",
+      "Loss of pigment within oral or genital mucous membranes"
     ],
     "possible_causes": [
-      "Autoimmune destruction of cutaneous melanocytes",
-      "Genetic factors (family history of vitiligo or other autoimmune diseases)",
-      "Trigger events such as severe sunburn, emotional trauma, or chemical exposure"
+      "Autoimmune destruction of functional melanocytes",
+      "Genetic susceptibility (often clustering with autoimmune thyroiditis, type 1 diabetes, or alopecia areata)",
+      "Oxidative stress causing melanocyte intrinsic fragility",
+      "Triggering events such as severe sunburn, mechanical abrasion (Koebner response), or severe stress"
     ],
     "self_care_precautions": [
-      "Apply broad-spectrum, water-resistant sunscreen (SPF 30+) diligently to protect depigmented skin from severe sunburn.",
-      "Wear UV-protective clothing and wide-brimmed hats when outdoors.",
-      "Avoid getting tattoos or skin injuries, as pigment loss can occur at injury sites.",
-      "Consider safe cosmetic concealers or self-tanning lotions for color uniformity if desired."
+      "Apply broad-spectrum water-resistant sunscreen (SPF 50+) daily; depigmented skin has zero natural melanin UV protection.",
+      "Wear protective UV-blocking clothing, long sleeves, and wide-brimmed hats.",
+      "Avoid tattoos, abrasions, and skin trauma to avoid initiating new depigmentation zones.",
+      "Utilize dermatologist-approved medical camouflage cosmetics or self-tanners if desired."
     ],
-    "when_to_see_doctor": "Consult a dermatologist early if you notice spreading white patches to discuss medical treatments such as topical calcineurin inhibitors, targeted phototherapy, or oral medications."
+    "when_to_see_doctor": "Consult a dermatologist promptly upon noticing pigment loss. Early medical interventions (topical calcineurin inhibitors, topical JAK inhibitors, narrow-band UVB phototherapy) have the highest chance of halting spread and stimulating repigmentation."
   },
   "melanoma": {
     "name": "Melanoma",
     "medical_term": "Malignant Melanoma",
     "risk_level": "Critical",
     "badge_class": "bg-danger",
-    "summary": "Melanoma is the most serious form of skin cancer. It develops in the melanocytes and can rapidly invade nearby tissues and spread (metastasize) to distant organs if not detected and treated early.",
+    "category": "Skin Cancers & Malignancies",
+    "is_ai_supported": true,
+    "summary": "Melanoma is the most aggressive and life-threatening form of skin cancer. Arising from transformed melanocytes, it has high metastatic potential to regional lymph nodes and vital organs if not detected and excised early.",
     "common_symptoms": [
-      "A - Asymmetry: One half of a mole or spot does not match the other half",
-      "B - Border: Irregular, scalloped, notched, or poorly defined edges",
-      "C - Color: Varied shades of brown or black, sometimes with patches of pink, red, white, or blue",
-      "D - Diameter: Usually greater than 6mm (pencil eraser size), though can be smaller",
-      "E - Evolving: A mole or skin lesion that is changing in size, shape, color, or elevation, or that begins itching, bleeding, or crusting"
+      "A - Asymmetry: One half of the pigmented lesion does not match the contralateral half",
+      "B - Border: Jagged, notched, scalloped, irregular, or poorly circumscribed margins",
+      "C - Color: Motley variegation with shades of dark brown, black, blue-gray, red, or depigmented white",
+      "D - Diameter: Greater than 6 mm across (approx. diameter of a pencil eraser), though can be smaller",
+      "E - Evolving: Any lesion changing in size, shape, color, elevation, or developing spontaneous bleeding, itching, or crusting",
+      "'Ugly Duckling' sign: A pigmented lesion that looks visibly distinct from all other moles on the patient"
     ],
     "possible_causes": [
-      "Intense, intermittent ultraviolet (UV) radiation exposure from sunlight or tanning beds",
-      "Multiple severe, blistering sunburns in childhood or adolescence",
-      "Having many moles (especially atypical or dysplastic nevi)",
-      "Fair skin, light hair, and personal/family history of skin cancer",
-      "Weakened immune system"
+      "Intense, blistering ultraviolet (UV) radiation exposure from sunlight or indoor tanning beds",
+      "Multiple severe sunburns during childhood or adolescence",
+      "High total nevus count (having over 50 moles) or atypical/dysplastic nevi",
+      "Fitzpatrick skin types I and II (fair skin, freckles, red or blond hair, blue eyes)",
+      "Family or personal history of cutaneous melanoma and CDKN2A gene mutations"
     ],
     "self_care_precautions": [
-      "CRITICAL: Do NOT attempt any self-treatment, home remedies, or scratching of suspected lesions.",
-      "Protect your skin with broad-spectrum SPF 50+ sunscreen daily.",
-      "Perform monthly self-skin examinations using a full-length mirror.",
-      "Take clear, dated photographs of the lesion to show the dermatologist."
+      "DO NOT perform any home remedies, needle biopsies, or abrasive treatments on suspected lesions.",
+      "Conduct thorough monthly head-to-toe skin self-examinations under good lighting.",
+      "Apply broad-spectrum UVA/UVB SPF 50+ sunscreen daily and avoid direct midday solar exposure.",
+      "Photograph concerning lesions with a ruler for clinical size tracking."
     ],
-    "when_to_see_doctor": "IMMEDIATE ATTENTION REQUIRED: If any mole or spot shows ABCDE warning signs, grows rapidly, bleeds, or changes color, schedule an urgent in-person evaluation with a certified dermatologist or oncologist immediately."
+    "when_to_see_doctor": "IMMEDIATE URGENT ACTION: If any skin mark shows ABCDE abnormalities or changes rapidly, book an urgent consultation with a dermatologist or surgical oncologist immediately for dermoscopy and excisional biopsy."
   },
   "melanocytic_nevus": {
     "name": "Melanocytic Nevus",
-    "medical_term": "Common Mole (Benign)",
+    "medical_term": "Common Benign Mole",
     "risk_level": "Low",
     "badge_class": "bg-success",
-    "summary": "A melanocytic nevus is a common, non-cancerous (benign) skin growth formed by clusters of pigment-producing melanocytes. Most adults have between 10 and 40 benign moles.",
+    "category": "Pigmentary & Benign",
+    "is_ai_supported": true,
+    "summary": "A melanocytic nevus is a common benign proliferation of melanocytes. Almost all individuals have between 10 and 40 benign nevi, which represent stable, non-cancerous collections of pigment cells.",
     "common_symptoms": [
-      "Evenly colored spot (usually pink, tan, brown, or black)",
-      "Round or oval shape with smooth, well-defined borders",
-      "Flat (macule) or slightly raised dome-shaped bump (papule)",
-      "Generally stable size under 6mm across",
-      "May occasionally sprout small hairs"
+      "Uniform tan, brown, or flesh-colored circular spot",
+      "Symmetrical oval or round shape with crisp, regular borders",
+      "Smooth surface, either flat (junctional), raised dome-shaped (compound), or polypoid (intradermal)",
+      "Consistent size under 6 mm that remains stable over decades",
+      "May occasionally have one or more terminal hairs growing from the center"
     ],
     "possible_causes": [
-      "Normal localized proliferation of melanocytes",
-      "Genetic inheritance and sun exposure during childhood",
-      "Hormonal changes during pregnancy or adolescence"
+      "Benign, regulated clonal proliferation of melanocytes",
+      "Genetic predisposition and familial mole patterns",
+      "Normal sun exposure during early childhood and adolescence",
+      "Hormonal surges during puberty or pregnancy"
     ],
     "self_care_precautions": [
-      "Keep track of moles and perform regular self-checks using the ABCDE criteria.",
-      "Protect skin daily with broad-spectrum sunscreen to prevent cellular UV damage.",
-      "Avoid abrasive scrubbing over raised moles to avoid accidental bleeding."
+      "Perform periodic self-skin audits to confirm stability of all nevi using the ABCDE guidelines.",
+      "Use broad-spectrum sunscreen daily to safeguard skin cells from UV mutational damage.",
+      "Avoid repetitive mechanical friction (e.g. from razor blades or tight bra straps) over raised moles."
     ],
-    "when_to_see_doctor": "Schedule a routine dermatological skin check. If any existing mole changes in size, shape, color, border regularity, or begins bleeding or itching, have it examined promptly."
+    "when_to_see_doctor": "Schedule a routine dermatological skin exam annually. Request immediate professional dermoscopy if any existing mole alters its symmetry, margins, shade, or develops unexplained bleeding or persistent itch."
   },
   "dermatitis": {
     "name": "Contact Dermatitis",
     "medical_term": "Contact Dermatitis",
     "risk_level": "Moderate",
     "badge_class": "bg-warning",
-    "summary": "Contact dermatitis is an itchy, localized red rash caused by direct skin contact with an irritating substance (irritant contact dermatitis) or an allergic trigger (allergic contact dermatitis).",
+    "category": "Allergic & Contact",
+    "is_ai_supported": true,
+    "summary": "Contact dermatitis is an acute or subacute inflammatory cutaneous reaction triggered by direct contact with an external irritant (irritant contact dermatitis) or a specific allergen (allergic contact dermatitis).",
     "common_symptoms": [
-      "Red, burning, or intensely itchy rash appearing shortly after contact",
-      "Blisters that may break, ooze, and crust over",
-      "Swelling, tenderness, and increased warmth of the affected area",
-      "Dry, cracked, or leathery skin from prolonged exposure"
+      "Erythematous, sharply demarcated itchy rash corresponding to the exact zone of exposure",
+      "Intense burning, stinging, or prickling sensations",
+      "Vesicles and blisters that may rupture, ooze serous fluid, and form crusts",
+      "Edema (swelling) and local warmth of the involved skin",
+      "Lichenification, scaling, and deep fissures from prolonged or chronic exposure"
     ],
     "possible_causes": [
-      "Irritants: Solvents, rubbing alcohol, bleach, detergents, friction",
-      "Allergens: Poison ivy/oak, nickel jewelry, cosmetics, fragrances, topical antibiotics",
-      "Occupational exposures (cleaning agents, chemicals, latex)"
+      "Irritants: Alkaline soaps, industrial solvents, detergents, bleach, abrasive friction",
+      "Allergens: Nickel in jewelry/belt buckles, urushiol (poison ivy/oak), fragrance chemicals, latex, hair dyes (PPD)",
+      "Occupational exposures in healthcare, hairdressing, construction, and food handling"
     ],
     "self_care_precautions": [
-      "Wash the skin immediately with mild soap and cool water to eliminate residual irritants.",
-      "Identify and strictly avoid future contact with the offending substance.",
-      "Apply cool, wet compresses for 15–30 minutes several times a day to relieve burning.",
-      "Apply over-the-counter 1% hydrocortisone cream or calamine lotion to reduce itching.",
-      "Take oral antihistamines if nighttime itching interferes with rest."
+      "Immediately wash affected areas with cool water and gentle unscented soap to remove residue.",
+      "Identify and strictly avoid future re-exposure to the known chemical or allergen.",
+      "Apply cold, wet compresses for 15–20 minutes several times a day to reduce acute weeping.",
+      "Use over-the-counter 1% hydrocortisone cream and calamine lotion for anti-pruritic relief.",
+      "Moisturize frequently with bland, fragrance-free barrier creams."
     ],
-    "when_to_see_doctor": "Consult a physician if the rash covers a substantial portion of the body, involves the eyes or face, develops signs of infection, or does not improve within a week."
+    "when_to_see_doctor": "Consult a healthcare professional if the rash affects the face, eyes, or genitals, covers large body surfaces, develops secondary bacterial infection (pus/yellow crusting), or fails to resolve within 7–10 days."
+  },
+  "rosacea": {
+    "name": "Rosacea",
+    "medical_term": "Acne Rosacea / Erythematotelangiectatic Rosacea",
+    "risk_level": "Moderate",
+    "badge_class": "bg-warning",
+    "category": "Acneiform & Sebaceous",
+    "is_ai_supported": false,
+    "summary": "Rosacea is a chronic inflammatory centrofacial skin condition characterized by flushing, persistent erythema, dilated superficial capillaries (telangiectasia), and inflammatory papules and pustules.",
+    "common_symptoms": [
+      "Frequent episodic flushing progressing to persistent central facial erythema",
+      "Visible spider-like dilated blood vessels (telangiectasias) across nose and cheeks",
+      "Inflammatory red bumps and pustules (without the comedones typical of acne vulgaris)",
+      "Facial stinging, burning, or tightness sensations",
+      "Ocular rosacea symptoms including dry, gritted, bloodshot eyes and blepharitis",
+      "Phymatous changes (such as rhinophyma: bulbous skin thickening of the nose in advanced cases)"
+    ],
+    "possible_causes": [
+      "Dysregulated neurovascular reactivity causing persistent vasodilation",
+      "Innate immune hyperactivity with elevated antimicrobial peptides (cathelicidins)",
+      "Overabundance of microscopic Demodex folliculorum skin mites",
+      "Environmental triggers including hot beverages, spicy foods, alcohol, temperature extremes, UV light, and emotional stress"
+    ],
+    "self_care_precautions": [
+      "Identify and keep a diary of personal lifestyle triggers (spicy food, hot showers, alcohol).",
+      "Cleanse face gently with lukewarm water and mild, soap-free, non-foaming cleansers.",
+      "Apply broad-spectrum mineral sunscreen (zinc oxide or titanium dioxide SPF 30+) daily.",
+      "Avoid alcohol-based astringents, menthol, camphor, and abrasive exfoliants.",
+      "Protect face from wind and cold with scarves and rich barrier balms."
+    ],
+    "when_to_see_doctor": "Consult a dermatologist for prescription medical treatments (topical ivermectin, metronidazole, azelaic acid, low-dose oral doxycycline, or pulsed-dye laser therapy) to halt progression and protect ocular health."
+  },
+  "urticaria": {
+    "name": "Hives",
+    "medical_term": "Urticaria",
+    "risk_level": "Moderate",
+    "badge_class": "bg-warning",
+    "category": "Allergic & Contact",
+    "is_ai_supported": false,
+    "summary": "Urticaria (hives) is a transient vascular reaction of the upper dermis characterized by intensely itchy, raised, erythematous wheals that blanch upon pressure and often resolve within 24 hours while new lesions erupt elsewhere.",
+    "common_symptoms": [
+      "Elevated, smooth erythematous or pale-centered plaques (wheals) with clear borders",
+      "Severe, intolerable pruritus, burning, or tingling sensation",
+      "Lesions that blanch (turn white momentarily) when finger pressure is applied",
+      "Rapidly migratory rash: individual lesions resolve within 24 hours without leaving scars",
+      "Associated angioedema (deep swelling of lips, eyelids, tongue, or extremities)"
+    ],
+    "possible_causes": [
+      "Mast cell degranulation and rapid histamine release into dermal tissue",
+      "Food allergies (peanuts, tree nuts, shellfish, eggs, dairy, additives)",
+      "Medication reactions (penicillins, NSAIDs, ACE inhibitors, sulfonamides)",
+      "Viral or bacterial infections (common cold, mononucleosis, streptococcus)",
+      "Physical triggers (cold immersion, heat, vibration, dermatographism from skin scratching)",
+      "Insect bites and stings"
+    ],
+    "self_care_precautions": [
+      "Take non-sedating, second-generation over-the-counter H1 antihistamines (cetirizine, fexofenadine, loratadine).",
+      "Apply cold, wet compresses or take cool baths with colloidal oatmeal to relieve intense itching.",
+      "Wear loose, soft cotton clothing to prevent friction-induced histamine release.",
+      "Avoid overheating, hot showers, alcohol, and aspirin while lesions are active."
+    ],
+    "when_to_see_doctor": "SEEK EMERGENCY CARE IMMEDIATELY if hives are accompanied by wheezing, shortness of breath, tightness in the throat, swollen tongue/lips, dizziness, or vomiting (anaphylaxis). Consult an allergist if hives recur for longer than 6 weeks."
+  },
+  "herpes_zoster": {
+    "name": "Shingles",
+    "medical_term": "Herpes Zoster",
+    "risk_level": "High",
+    "badge_class": "bg-danger",
+    "category": "Infectious & Viral",
+    "is_ai_supported": false,
+    "summary": "Shingles is a painful dermatomal neuro-cutaneous reactivation of the dormant varicella-zoster virus (the virus that causes chickenpox), producing unilateral blistering crops along specific sensory nerve paths.",
+    "common_symptoms": [
+      "Severe localized burning, tingling, stabbing pain, or numbness 2–4 days before rash onset",
+      "Unilateral band-like erythematous rash strictly confined to a single dermatome (one side of body or face)",
+      "Crops of clear fluid-filled vesicles on an inflamed, red base",
+      "Vesicles that rupture, ulcerate, and form dry crusts over 7–10 days",
+      "Severe hyperesthesia or allodynia (normal touch, clothing, or wind causes acute pain)",
+      "Systemic malaise, low-grade fever, and headache"
+    ],
+    "possible_causes": [
+      "Reactivation of dormant varicella-zoster virus residing in dorsal root or cranial nerve ganglia",
+      "Age-related decline in cell-mediated immunity (most common in adults over age 50)",
+      "Immunocompromising conditions, chemotherapy, organ transplantation, or immunosuppressant drugs",
+      "Severe physical illness, psychological stress, or systemic trauma"
+    ],
+    "self_care_precautions": [
+      "Keep the rash clean, dry, and loosely covered with non-stick sterile dressings.",
+      "Apply cool, moist compresses to soothe nerve burning (avoid ice directly on skin).",
+      "Wear loose-fitting, soft cotton garments to minimize mechanical friction.",
+      "Wash hands thoroughly and strictly avoid contact with pregnant women, newborns, and anyone who has never had chickenpox until all blisters are fully crusted over."
+    ],
+    "when_to_see_doctor": "SEEK MEDICAL CARE WITHIN 72 HOURS: Oral antiviral therapy (valacyclovir, famciclovir) started within 72 hours drastically shortens the outbreak and reduces risk of persistent nerve pain (postherpetic neuralgia). Seek EMERGENCY care if the rash is near or involves the eye."
+  },
+  "basal_cell_carcinoma": {
+    "name": "Basal Cell Carcinoma",
+    "medical_term": "Basal Cell Carcinoma (BCC)",
+    "risk_level": "High",
+    "badge_class": "bg-danger",
+    "category": "Skin Cancers & Malignancies",
+    "is_ai_supported": false,
+    "summary": "Basal cell carcinoma is the most common cutaneous malignancy worldwide. Originating in non-keratinizing basal cells of the epidermis, it grows slowly and rarely metastasizes, but can cause extensive local tissue destruction if neglected.",
+    "common_symptoms": [
+      "A translucent, pearly, or waxy dome-shaped papule with tiny telangiectasias (spider veins)",
+      "A non-healing open sore that bleeds, oozes, or crusts over, temporarily seems to heal, and then recurs",
+      "A flat, firm, pale yellow or scar-like morphoeic plaque with ill-defined borders",
+      "An elevated reddish patch or irritated area on chest, shoulders, or back",
+      "A pink growth with slightly elevated rolled borders and a crusted central indentation"
+    ],
+    "possible_causes": [
+      "Cumulative, long-term ultraviolet (UV) radiation from sunlight or tanning beds",
+      "History of frequent sunburns and sunbed use",
+      "Fitzpatrick skin types I and II (fair skin that burns easily, red/blond hair, light eyes)",
+      "Previous personal history of skin cancers or radiation therapy",
+      "Genetic syndromes (such as Nevoid Basal Cell Carcinoma Syndrome / Gorlin syndrome)"
+    ],
+    "self_care_precautions": [
+      "NEVER attempt to scratch, squeeze, chemically burn, or perform home surgery on any suspicious skin growth.",
+      "Wear broad-spectrum SPF 50+ mineral sunscreen every day, rain or shine.",
+      "Use wide-brimmed hats and UV-protective clothing outdoors.",
+      "Conduct regular full-body skin self-checks with a mirror."
+    ],
+    "when_to_see_doctor": "SCHEDULE AN IN-PERSON DERMATOLOGY VISIT: Any persistent sore that fails to heal after 3–4 weeks, or any pearly, bleeding bump on sun-exposed skin (face, scalp, neck, ears) requires an immediate professional dermoscopy and biopsy."
+  },
+  "squamous_cell_carcinoma": {
+    "name": "Squamous Cell Carcinoma",
+    "medical_term": "Cutaneous Squamous Cell Carcinoma (cSCC)",
+    "risk_level": "High",
+    "badge_class": "bg-danger",
+    "category": "Skin Cancers & Malignancies",
+    "is_ai_supported": false,
+    "summary": "Cutaneous squamous cell carcinoma is the second most common form of skin cancer, arising from the malignant proliferation of epidermal keratinocytes. It has a significant propensity for local invasion and potential metastasis to lymph nodes.",
+    "common_symptoms": [
+      "A persistent, thick, rough, or scaly erythematous plaque that may crust or bleed",
+      "A firm, elevated red nodule, sometimes with a central crater or ulceration",
+      "A wart-like hyperkeratotic cutaneous horn or growth that continues to enlarge",
+      "An open sore that persists for more than 4 weeks without healing",
+      "Tenderness or pain arising within a pre-existing actinic keratosis (precancerous sun spot)"
+    ],
+    "possible_causes": [
+      "Lifetime cumulative UV radiation exposure from outdoor occupations or tanning beds",
+      "Progression from untreated actinic keratoses",
+      "Immunosuppression (organ transplant recipients have a 65- to 250-fold increased risk of SCC)",
+      "Chronic non-healing wounds, burn scars (Marjolin's ulcer), or radiation exposure sites",
+      "Oncogenic Human Papillomavirus (HPV) strains in periungual or genital sites"
+    ],
+    "self_care_precautions": [
+      "Do NOT pick off thick scales or crusts, as this accelerates bleeding and infection.",
+      "Practice aggressive sun avoidance during peak hours (10 AM to 4 PM).",
+      "Wear UPF 50+ clothing and broad-spectrum high-SPF sunscreen consistently.",
+      "Examine skin regularly for rapidly growing or tender bumps."
+    ],
+    "when_to_see_doctor": "PROMPT DERMATOLOGY EVALUATION REQUIRED: Any fast-growing, tender, firm nodule or persistent scaly plaque on sun-exposed areas (ears, lower lip, face, bald scalp, hands) demands rapid biopsy and surgical staging."
+  },
+  "seborrheic_dermatitis": {
+    "name": "Seborrheic Dermatitis",
+    "medical_term": "Seborrheic Dermatitis",
+    "risk_level": "Low",
+    "badge_class": "bg-info",
+    "category": "Acneiform & Sebaceous",
+    "is_ai_supported": false,
+    "summary": "Seborrheic dermatitis is a common, chronic, relapsing inflammatory condition affecting areas rich in sebaceous glands (scalp, eyebrows, nasolabial folds, ears, and chest), producing greasy yellowish scales and mild erythema.",
+    "common_symptoms": [
+      "Stubborn, flaking white or greasy yellow scales on the scalp (dandruff) and beard area",
+      "Erythematous patches covered with greasy, yellowish crusts along the hairline and nasolabial folds",
+      "Mild to moderate pruritus (itching) and localized burning",
+      "Blepharitis (red, scaly, crusty eyelid margins)",
+      "Cradle cap in infants (thick, crusty scalp scales that resolve spontaneously)"
+    ],
+    "possible_causes": [
+      "Overgrowth of lipophilic Malassezia yeasts that hydrolyze sebum into irritant free fatty acids",
+      "Abnormal cutaneous inflammatory immune reaction to yeast metabolic byproducts",
+      "Elevated sebum production during puberty or adulthood",
+      "Neurological conditions (Parkinson's disease, cranial nerve palsies) and immunocompromise",
+      "Cold, dry weather, fatigue, and psychological stress"
+    ],
+    "self_care_precautions": [
+      "Use medicated shampoos containing ketoconazole, selenium sulfide, zinc pyrithione, or ciclopirox.",
+      "Leave medicated shampoo on the scalp for 5 full minutes before rinsing thoroughly.",
+      "Rotate active antifungal shampoo ingredients every few weeks to prevent tolerance.",
+      "Wash facial areas with gentle soap-free cleansers and apply light, oil-free moisturizers.",
+      "Avoid alcohol-based hair styling products that dehydrate and irritate the scalp."
+    ],
+    "when_to_see_doctor": "Consult a physician if medicated shampoos fail to alleviate symptoms after 3–4 weeks, if inflammation causes intense pain or hair shedding, or if signs of secondary bacterial folliculitis appear."
+  },
+  "impetigo": {
+    "name": "Impetigo",
+    "medical_term": "Impetigo Contagiosa",
+    "risk_level": "Moderate",
+    "badge_class": "bg-warning",
+    "category": "Infectious & Bacterial",
+    "is_ai_supported": false,
+    "summary": "Impetigo is a highly contagious superficial bacterial skin infection, most prevalent among young children and infants. It typically presents as fragile red sores that rupture, ooze, and form characteristic honey-colored crusts.",
+    "common_symptoms": [
+      "Erythematous macules that swiftly transform into thin-roofed vesicles or pustules",
+      "Ruptured sores that leak purulent fluid and dry into thick, golden, honey-colored amber crusts",
+      "Common distribution around the mouth, nose, chin, and exposed extremities",
+      "Mild pruritus and local soreness without significant pain",
+      "Bullous impetigo variant: larger, flaccid fluid-filled bullae that leave raw red circular bases"
+    ],
+    "possible_causes": [
+      "Infection by Staphylococcus aureus or Streptococcus pyogenes (Group A Strep)",
+      "Bacterial inoculation through small cuts, abrasions, insect bites, or eczema patches",
+      "Direct skin contact with an infected individual in schools, sports, or daycare centers",
+      "Warm, humid climates and poor hygiene conditions"
+    ],
+    "self_care_precautions": [
+      "Gently soak the sores in warm soapy water to remove dried crusts before applying medication.",
+      "Wash hands thoroughly with soap after every touch of the lesion.",
+      "Do not share towels, washcloths, clothing, or bed linens with family members.",
+      "Launder infected linens and clothes separately in hot water.",
+      "Keep affected children at home until 24 hours after starting appropriate antibiotic therapy."
+    ],
+    "when_to_see_doctor": "PROMPT MEDICAL CONSULTATION: Impetigo requires prescription topical antibiotic ointment (mupirocin) or oral antibiotics to eradicate bacteria rapidly, prevent spread, and reduce the risk of post-streptococcal glomerulonephritis."
+  },
+  "scabies": {
+    "name": "Scabies",
+    "medical_term": "Sarcoptes Scabiei Infestation",
+    "risk_level": "Moderate",
+    "badge_class": "bg-warning",
+    "category": "Infectious & Parasitic",
+    "is_ai_supported": false,
+    "summary": "Scabies is an intensely pruritic, highly contagious parasitic infestation caused by microscopic itch mites (Sarcoptes scabiei) that burrow into the stratum corneum of the epidermis to deposit eggs and feces.",
+    "common_symptoms": [
+      "Intractable, overwhelming itching (pruritus) that worsens drastically at night",
+      "Pimple-like erythematous papules and tiny fluid-filled vesicles",
+      "Visible thin, wavy, thread-like grayish-white burrow tracks (1 to 10 mm in length)",
+      "Classic web-space distribution: between fingers, wrists, elbows, armpits, waist, nipples, buttocks, and genitals",
+      "Crusted (Norwegian) scabies variant: thick hyperkeratotic crusts containing millions of mites in immunocompromised patients"
+    ],
+    "possible_causes": [
+      "Infestation by the female Sarcoptes scabiei var. hominis mite",
+      "Prolonged direct skin-to-skin contact with an infested individual (household members, sexual partners)",
+      "Crowded institutional living conditions (nursing homes, student dormitories, barracks)",
+      "Transmission via contaminated shared bedding or towels (less common)"
+    ],
+    "self_care_precautions": [
+      "Prescription antiparasitic medication (topical permethrin 5% or oral ivermectin) is strictly required.",
+      "Apply permethrin cream from neck to toes, leaving it on for 8–14 hours before washing off.",
+      "Treat ALL household members and sexual partners at the exact same time, even if asymptomatic.",
+      "Wash all bedding, towels, and clothing used in the last 4 days in hot water (at least 60°C) and machine dry on high heat.",
+      "Seal non-washable items in airtight plastic bags for 72 hours (mites starve and die off human skin)."
+    ],
+    "when_to_see_doctor": "CONSULT A DOCTOR IMMEDIATELY: Prescription scabicides are the only effective cure. Follow up if intense itching persists beyond 3–4 weeks post-treatment or if sores become infected with bacteria."
+  },
+  "tinea_versicolor": {
+    "name": "Tinea Versicolor",
+    "medical_term": "Pityriasis Versicolor",
+    "risk_level": "Low",
+    "badge_class": "bg-info",
+    "category": "Infectious & Fungal",
+    "is_ai_supported": false,
+    "summary": "Tinea versicolor is a common, non-contagious fungal infection caused by an overgrowth of Malassezia yeasts on the skin surface. It produces fine, scaly discolored patches that can appear either lighter or darker than surrounding skin.",
+    "common_symptoms": [
+      "Multiple discrete or confluent patches ranging from white, tan, pink, to dark brown (versicolor)",
+      "Finely scaly, dry surface when gently scratched (evoked scale / coup d'ongle sign)",
+      "Typical distribution across upper chest, upper back, shoulders, neck, and upper arms",
+      "Hypopigmented patches fail to tan following sun exposure, making them more prominent in summer",
+      "Mild to negligible pruritus, occasionally itching when sweating or hot"
+    ],
+    "possible_causes": [
+      "Proliferation of commensal lipophilic Malassezia yeasts (Malassezia globosa / sympodialis)",
+      "Hot, humid, tropical or subtropical climates",
+      "Excessive perspiration (hyperhidrosis) and tight synthetic sportswear",
+      "Naturally oily skin types and sebum overproduction",
+      "Transiently weakened immune defenses or malnutrition"
+    ],
+    "self_care_precautions": [
+      "Apply topical antifungal cleansers or lotions (selenium sulfide 2.5%, ketoconazole 2% shampoo, terbinafine spray) across affected areas for 10–14 days.",
+      "Leave antifungal shampoo on the skin for 10 minutes before showering off.",
+      "Keep skin clean, cool, and dry, particularly after athletic workouts.",
+      "Wear breathable, loose cotton garments.",
+      "Note that skin color variations can take several weeks or months to normalize even after the yeast is fully eliminated."
+    ],
+    "when_to_see_doctor": "Consult a dermatologist if patches cover very large areas of the body, recur frequently each spring/summer, or fail to respond to standard over-the-counter topical treatments (oral antifungals may be indicated)."
+  },
+  "alopecia_areata": {
+    "name": "Alopecia Areata",
+    "medical_term": "Alopecia Areata",
+    "risk_level": "Low",
+    "badge_class": "bg-info",
+    "category": "Autoimmune & Appendages",
+    "is_ai_supported": false,
+    "summary": "Alopecia areata is an autoimmune condition in which the body's immune system attacks healthy anagen hair follicles, leading to rapid, unpredictable, well-demarcated patchy hair loss on the scalp, beard, or body.",
+    "common_symptoms": [
+      "One or more smooth, round or oval bald patches appearing suddenly over days to weeks",
+      "Characteristic 'exclamation mark' hairs (short, tapered hairs narrower at the follicular insertion point) at patch margins",
+      "Absence of erythema, scaling, epidermal atrophy, or scarring on the bald scalp",
+      "Fingernail changes in up to 30% of patients, such as fine pitting, trachyonychia (roughness), or white spots",
+      "Alopecia totalis (complete loss of scalp hair) or universalis (complete loss of all body hair) in rare severe cases"
+    ],
+    "possible_causes": [
+      "Collapse of hair follicle immune privilege mediated by CD8+ T lymphocytes and interferon-gamma",
+      "Polygenic susceptibility with associations to other autoimmune conditions (vitiligo, thyroiditis, celiac disease)",
+      "Triggers including severe psychological stress, viral infections, or hormonal disruptions"
+    ],
+    "self_care_precautions": [
+      "Protect exposed scalp patches from UV sun damage with hats, scarves, and high-SPF sunscreen.",
+      "Handle remaining hair gently with sulfate-free shampoos and avoid aggressive chemical treatments or tight hairstyles.",
+      "Utilize cosmetic styling techniques, concealers, or dermatological wigs if desired.",
+      "Join alopecia patient support groups to mitigate the emotional and psychological toll of hair loss."
+    ],
+    "when_to_see_doctor": "Consult a dermatologist early when patches first appear. Clinical treatments (intralesional corticosteroid injections, topical immunotherapy, and modern oral JAK inhibitors like baricitinib or ritlecitinib) can halt progression and induce hair regrowth."
+  },
+  "keratosis_pilaris": {
+    "name": "Keratosis Pilaris",
+    "medical_term": "Keratosis Pilaris",
+    "risk_level": "Low",
+    "badge_class": "bg-info",
+    "category": "Follicular & Genetic",
+    "is_ai_supported": false,
+    "summary": "Keratosis pilaris is a completely benign, extremely common genetic disorder of follicular keratinization, often called 'strawberry skin', caused by the buildup of dead keratin plugs in hair follicle openings.",
+    "common_symptoms": [
+      "Clusters of tiny, hard, painless, rough, pointed bumps resembling permanent gooseflesh",
+      "Sandpaper-like texture on the posterolateral upper arms, anterior thighs, and cheeks",
+      "Mild redness (erythema) or brownish discoloration around individual follicle plugs",
+      "Significant seasonal fluctuation: worsening roughness in dry winter months and improving in summer humidity",
+      "Absence of severe itching or pain"
+    ],
+    "possible_causes": [
+      "Excessive accumulation and hyperkeratinization of the hair follicle funnel",
+      "Autosomal dominant genetic inheritance with variable penetrance",
+      "Strong association with atopic dermatitis, ichthyosis vulgaris, and dry xerotic skin"
+    ],
+    "self_care_precautions": [
+      "Apply gentle chemical exfoliating creams containing lactic acid (12%), salicylic acid, urea (10-20%), or ammonium lactate.",
+      "Avoid vigorous manual scrubbing with loofahs or body scrubs, which exacerbates inflammation.",
+      "Limit showers to under 10 minutes with lukewarm water and mild, soap-free cleansers.",
+      "Apply thick ceramide moisturizers within 3 minutes of bathing to seal in hydration.",
+      "Use a bedroom humidifier during cold, dry winter seasons."
+    ],
+    "when_to_see_doctor": "Medical treatment is generally unnecessary as keratosis pilaris is medically harmless and often fades with age. A dermatologist can offer prescription retinoids or vascular laser therapy if redness causes notable cosmetic distress."
+  },
+  "warts": {
+    "name": "Warts",
+    "medical_term": "Verruca Vulgaris",
+    "risk_level": "Low",
+    "badge_class": "bg-info",
+    "category": "Infectious & Viral",
+    "is_ai_supported": false,
+    "summary": "Warts are common, benign cutaneous growths resulting from localized infection of keratinocytes with the Human Papillomavirus (HPV). They frequently appear on hands, fingers, and soles of feet.",
+    "common_symptoms": [
+      "Firm, rough, grainy, dome-shaped papules with hyperkeratotic surfaces (common warts)",
+      "Tiny black pinpoint dots within the lesion (thrombosed capillary blood vessels)",
+      "Plantar warts: flat, inward-growing lesions on the soles of feet that cause pain when walking or standing",
+      "Flat warts: smooth, slightly raised flesh-toned or yellowish papules on face or legs",
+      "Periungual warts: painful rough lesions developing around fingernails and toenails"
+    ],
+    "possible_causes": [
+      "Infection of superficial epidermal cells by Human Papillomavirus strains (most commonly HPV types 1, 2, 4, 27, 57)",
+      "Inoculation through microscopic skin breaks, hangnails, scratches, or chronic nail biting",
+      "Transmission via moist communal surfaces (swimming pool decks, gym locker rooms, public showers)",
+      "Immunocompromise or prolonged skin maceration"
+    ],
+    "self_care_precautions": [
+      "Apply over-the-counter topical salicylic acid solutions or patches daily after soaking in warm water and gently filing dead tissue.",
+      "Never pick, bite, scratch, or clip warts to prevent spreading the virus to other fingers or body sites.",
+      "Wear protective flip-flops or sandals in public showers and pool locker rooms.",
+      "Do not share towels, nail clippers, pumice stones, or shoes with others."
+    ],
+    "when_to_see_doctor": "Consult a dermatologist or podiatrist if warts are painful, bleed, spread rapidly, occur on the face or genitals, or fail to respond to over-the-counter salicylic acid after 2–3 months (clinical treatments include liquid nitrogen cryotherapy, candida antigen injections, or pulsed-dye laser)."
+  },
+  "folliculitis": {
+    "name": "Folliculitis",
+    "medical_term": "Folliculitis",
+    "risk_level": "Low",
+    "badge_class": "bg-info",
+    "category": "Acneiform & Sebaceous",
+    "is_ai_supported": false,
+    "summary": "Folliculitis is an inflammation or superficial infection of one or more hair follicles, presenting as tiny red bumps or pus-filled pustules centered around hair shafts, commonly precipitated by friction, shaving, or sweat.",
+    "common_symptoms": [
+      "Clusters of small red papules or white-headed pustules centered on individual hair follicles",
+      "Localized tenderness, mild to moderate itching, or burning sensations",
+      "Pustules that rupture, weep slight serosanguinous fluid, and crust over",
+      "Frequent involvement of beard area, scalp, buttocks, chest, back, and thighs",
+      "'Hot tub folliculitis': sudden widespread itchy pustules developing 1–2 days after using a contaminated heated pool or whirlpool"
+    ],
+    "possible_causes": [
+      "Bacterial infection (predominantly Staphylococcus aureus or Pseudomonas aeruginosa)",
+      "Fungal infection (Pityrosporum / Malassezia yeast overgrowth)",
+      "Mechanical friction from tight athletic clothing or backpack straps",
+      "Shaving against the grain, using dull razors, or waxing (pseudofolliculitis)",
+      "Heavy, occlusive oils, pomades, or ointments that block follicular ostia"
+    ],
+    "self_care_precautions": [
+      "Apply warm, moist compresses for 15 minutes 3–4 times daily to promote gentle drainage and relieve discomfort.",
+      "Wash affected skin with an antibacterial or benzoyl peroxide (5–10%) wash.",
+      "Cease shaving the affected area until the bumps heal completely.",
+      "When resuming shaving, use a single-blade sharp razor, plenty of shaving gel, and shave strictly in the direction of hair growth.",
+      "Wear loose, breathable clothing and shower promptly after vigorous workouts."
+    ],
+    "when_to_see_doctor": "Consult a healthcare provider if bumps merge into deep, painful, fluctuant boils (furuncles or carbuncles), if fever or spreading redness occurs, or if lesions fail to improve after 4–5 days of home care."
+  },
+  "keloids": {
+    "name": "Keloids",
+    "medical_term": "Keloid Disorder",
+    "risk_level": "Low",
+    "badge_class": "bg-info",
+    "category": "Pigmentary & Benign",
+    "is_ai_supported": false,
+    "summary": "A keloid is an exuberant, non-cancerous overgrowth of dense fibrous scar tissue that extends significantly beyond the original margins of a cutaneous wound, driven by dysregulated collagen synthesis during healing.",
+    "common_symptoms": [
+      "Elevated, firm, rubbery, or shiny plaque or nodule protruding well beyond original wound borders",
+      "Color ranging from pink, red, flesh-toned, to hyperpigmented dark brown or purple",
+      "Localized pruritus, tenderness, or sharp intermittent discomfort, particularly during active growth",
+      "Gradual progressive enlargement over months or years without spontaneous regression",
+      "Common predilection for earlobes (post-piercing), chest, shoulders, upper back, and jawline"
+    ],
+    "possible_causes": [
+      "Aberrant prolonged wound healing response with excessive type I and III collagen deposition",
+      "Elevated mechanical skin tension and persistent fibroblast hyper-activity",
+      "Strong genetic predisposition; significantly higher incidence in Fitzpatrick skin phototypes IV through VI",
+      "Prior skin trauma including ear piercings, acne lesions, surgical incisions, burns, and vaccinations"
+    ],
+    "self_care_precautions": [
+      "Strictly avoid elective body piercings, tattoos, and unneeded cosmetic skin procedures if you or a family member form keloids.",
+      "Apply medical-grade silicone gel or silicone sheeting over fresh scars for 12–24 hours daily for 3–6 months.",
+      "Protect scars diligently from ultraviolet light with clothing and high-SPF sunscreen.",
+      "NEVER attempt to slice, freeze, tie off with thread, or chemically burn a keloid at home."
+    ],
+    "when_to_see_doctor": "Consult a dermatologist or plastic surgeon to evaluate clinical intervention options: intralesional triamcinolone acetonide corticosteroid injections, cryotherapy, pulsed-dye laser, custom pressure earrings, or surgical excision combined with adjuvant superficial radiotherapy."
   }
 }

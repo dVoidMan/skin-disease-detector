@@ -109,7 +109,7 @@ class StorageManager:
                 
                 # Construct URL
                 if self.public_url:
-                    image_url = f"{self.public_url}/{r2_key}"
+                    image_url = f"{self.public_url.rstrip('/')}/{r2_key}"
                 else:
                     # Generate a presigned URL valid for 7 days
                     image_url = self.r2_client.generate_presigned_url(

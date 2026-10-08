@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+
+{% block title %}About Project & Research Team | DermAI{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <!-- Header Hero -->
+    <div class="text-center max-w-700 mx-auto mb-5">
+        <span class="badge bg-primary-subtle text-primary fw-semibold px-3 py-2 rounded-pill mb-3">
+            <i class="bi bi-mortarboard-fill me-1"></i> Academic Research Project
+        </span>
+        <h1 class="display-5 fw-bold text-dark mb-3">
+            About the <span class="text-primary-gradient">DermAI System</span>
+        </h1>
+        <p class="lead text-secondary">
+            An assistive deep learning dermatological screening platform developed by computer science students at <strong>Moshood Abiola Polytechnic (MAPOLY)</strong> under expert academic supervision.
+        </p>
+        <div class="d-inline-flex align-items-center gap-2 px-3 py-2 rounded-pill institution-pill mt-2">
+            <i class="bi bi-geo-alt-fill text-primary"></i>
+            <span class="small fw-semibold text-dark">Moshood Abiola Polytechnic, Abeokuta, Ogun State, Nigeria</span>
+        </div>
+    </div>
+
+    <!-- Student Researchers / Development Team -->
+    <div class="mb-5">
+        <div class="text-center mb-4">
+            <h3 class="fw-bold text-dark mb-1">Development Team</h3>
+            <p class="text-muted small">The student researchers and engineers behind the system design, neural network, and web architecture.</p>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            <!-- Team Member 1: Lawal Reinhard Oluwatimilehin -->
+            <div class="col-md-6 col-lg-5">
+                <div class="card h-100 bg-white rounded-4 p-4 text-center team-card shadow-sm position-relative overflow-hidden">
+                    <div class="position-absolute top-0 start-0 w-100 bg-primary" style="height: 6px;"></div>
+                    <div class="mb-3 mt-2">
+                        <img src="{{ url_for('static', filename='img/team/lawal_reinhard.jpg') }}" 
+                             alt="Lawal Reinhard Oluwatimilehin" 
+                             class="team-avatar img-fluid">
+                    </div>
+                    <h4 class="fw-bold text-dark mb-1">Lawal Reinhard Oluwatimilehin</h4>
+                    <div class="badge bg-primary-subtle text-primary rounded-pill px-3 py-1 mb-2">
+                        Student Researcher & Lead Developer
+                    </div>
+                    <p class="text-muted small mb-3">
+                        <i class="bi bi-building me-1"></i> Moshood Abiola Polytechnic
+                    </p>
+                    <hr class="my-3 text-secondary-subtle">
+                    <p class="text-secondary small leading-relaxed mb-0">
+                        Focused on deep learning model architecture, MobileNetV2 transfer learning, computer vision preprocessing, YCbCr skin chrominance segmentation, and clinical guardrail filters.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Team Member 2: Ogunsanya David Iyanuoluwa -->
+            <div class="col-md-6 col-lg-5">
+                <div class="card h-100 bg-white rounded-4 p-4 text-center team-card shadow-sm position-relative overflow-hidden">
+                    <div class="position-absolute top-0 start-0 w-100 bg-teal" style="height: 6px; background-color: var(--accent-color);"></div>
+                    <div class="mb-3 mt-2">
+                        <img src="{{ url_for('static', filename='img/team/ogunsanya_david.jpg') }}" 
+                             alt="Ogunsanya David Iyanuoluwa" 
+                             class="team-avatar img-fluid">
+                    </div>
+                    <h4 class="fw-bold text-dark mb-1">Ogunsanya David Iyanuoluwa</h4>
+                    <div class="badge bg-teal-subtle text-teal rounded-pill px-3 py-1 mb-2" style="background-color: #ccfbf1; color: #0f766e;">
+                        Student Researcher & Full-Stack Systems Engineer
+                    </div>
+                    <p class="text-muted small mb-3">
+                        <i class="bi bi-building me-1"></i> Moshood Abiola Polytechnic
+                    </p>
+                    <hr class="my-3 text-secondary-subtle">
+                    <p class="text-secondary small leading-relaxed mb-0">
+                        Specialized in full-stack web application development, Cloudflare R2 object storage integration, database modeling, Docker container orchestration, and interactive healthcare UI/UX design.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Supervisor Section -->
+    <div class="row justify-content-center mb-5">
+        <div class="col-lg-10">
+            <div class="card border-0 rounded-4 shadow-sm p-4 p-md-5 bg-white position-relative overflow-hidden">
+                <div class="position-absolute top-0 start-0 w-100 bg-warning" style="height: 6px;"></div>
+                <div class="row align-items-center gy-4">
+                    <div class="col-md-3 text-center">
+                        <div class="d-inline-flex p-4 rounded-circle bg-warning-subtle text-warning-emphasis mb-2 shadow-sm">
+                            <i class="bi bi-award-fill fs-1"></i>
+                        </div>
+                        <h5 class="fw-bold text-dark mb-0">Mrs Adesina</h5>
+                        <small class="text-muted fw-semibold">Project Supervisor</small>
+                    </div>
+                    <div class="col-md-9 border-start-md ps-md-4">
+                        <span class="badge bg-warning-subtle text-warning-emphasis rounded-pill px-3 py-1 mb-2">
+                            Academic Supervision & Mentorship
+                        </span>
+                        <h4 class="fw-bold text-dark mb-2">Supervised by Mrs Adesina</h4>
+                        <p class="text-secondary leading-relaxed mb-3">
+                            This research project was designed and executed under the dedicated academic supervision and technical guidance of <strong>Mrs Adesina</strong> at <strong>Moshood Abiola Polytechnic</strong>. 
+                        </p>
+                        <p class="text-secondary small leading-relaxed mb-0">
+                            Her expert supervision ensured strict adherence to academic standards, rigorous evaluation methodology, medical safety guardrails, and ethical AI deployment principles throughout the project lifecycle.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Research Context & Motivation -->
+    <div class="row g-4 mb-5">
+        <div class="col-lg-6">
+            <div class="card h-100 border-0 shadow-sm rounded-4 p-4 bg-white">
+                <div class="d-flex align-items-center gap-2 mb-3">
+                    <div class="p-2 rounded-3 bg-primary-subtle text-primary">
+                        <i class="bi bi-heart-pulse-fill fs-4"></i>
+                    </div>
+                    <h5 class="fw-bold text-dark mb-0">Project Motivation & Goal</h5>
+                </div>
+                <p class="text-secondary leading-relaxed mb-3">
+                    Skin diseases are among the most pervasive health burdens worldwide, yet certified dermatologists remain critically inaccessible in many low- and middle-income regions, including parts of Nigeria.
+                </p>
+                <p class="text-secondary leading-relaxed mb-0">
+                    DermAI demonstrates the power of applied machine learning: utilizing lightweight, transfer-learned convolutional neural networks to deliver fast, accessible visual screening, triaging high-risk lesions like melanoma, and providing medically reviewed self-care knowledge.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="card h-100 border-0 shadow-sm rounded-4 p-4 bg-white">
+                <div class="d-flex align-items-center gap-2 mb-3">
+                    <div class="p-2 rounded-3 bg-teal-subtle text-teal" style="background-color: #ccfbf1; color: #0f766e;">
+                        <i class="bi bi-cpu-fill fs-4"></i>
+                    </div>
+                    <h5 class="fw-bold text-dark mb-0">Technical Highlights</h5>
+                </div>
+                <ul class="list-unstyled d-flex flex-column gap-3 mb-0">
+                    <li class="d-flex align-items-start gap-2 text-secondary small">
+                        <i class="bi bi-check-circle-fill text-primary fs-6 mt-1 flex-shrink-0"></i>
+                        <span><strong>Deep Learning Core:</strong> MobileNetV2 CNN architecture with transfer learning optimized for fine-grained lesion classification.</span>
+                    </li>
+                    <li class="d-flex align-items-start gap-2 text-secondary small">
+                        <i class="bi bi-check-circle-fill text-primary fs-6 mt-1 flex-shrink-0"></i>
+                        <span><strong>Clinical Safety Guardrails:</strong> YCbCr skin tone segmentation & structural edge complexity analysis to reject non-skin photos and cluttered room scenes.</span>
+                    </li>
+                    <li class="d-flex align-items-start gap-2 text-secondary small">
+                        <i class="bi bi-check-circle-fill text-primary fs-6 mt-1 flex-shrink-0"></i>
+                        <span><strong>Dual Cloud/Local Storage:</strong> S3-compatible Cloudflare R2 bucket integration with seamless local storage fallback.</span>
+                    </li>
+                    <li class="d-flex align-items-start gap-2 text-secondary small">
+                        <i class="bi bi-check-circle-fill text-primary fs-6 mt-1 flex-shrink-0"></i>
+                        <span><strong>Production Ready:</strong> Docker and Docker Compose containerization for portable cross-platform deployment.</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="p-4 p-md-5 rounded-4 text-center bg-primary-dark text-white shadow">
+        <h3 class="fw-bold mb-2">Try the AI Screening Tool</h3>
+        <p class="text-white-50 max-w-700 mx-auto mb-4">
+            Test the live image classification engine with a dermatological lesion photo or explore the comprehensive skin condition library.
+        </p>
+        <div class="d-flex justify-content-center flex-wrap gap-3">
+            <a href="{{ url_for('index') }}" class="btn btn-primary rounded-pill px-4 py-2">
+                <i class="bi bi-camera me-1"></i> Start a Lesion Scan
+            </a>
+            <a href="{{ url_for('encyclopedia') }}" class="btn btn-outline-light rounded-pill px-4 py-2">
+                <i class="bi bi-book me-1"></i> Browse Disease Encyclopedia
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

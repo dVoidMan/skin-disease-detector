@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block title %}My Scan History | DermAI{% endblock %}
+
+{% block content %}
+<div class="container py-3">
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+        <div>
+            <h3 class="fw-bold text-dark mb-1">
+                <i class="bi bi-clock-history text-primary me-2"></i>My Skin Scan History
+            </h3>
+            <p class="text-muted small mb-0">Track past lesion classifications, monitor changes, and review recommendations.</p>
+        </div>
+        <a href="{{ url_for('index') }}" class="btn btn-primary rounded-pill px-4 btn-sm">
+            <i class="bi bi-plus-lg me-1"></i> New Scan
+        </a>
+    </div>
+
+    {% if scans %}
+    <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th class="ps-4">Lesion Thumbnail</th>
+                        <th>Predicted Condition</th>
+                        <th>Confidence</th>
+                        <th>Storage</th>
+                        <th>Scan Date</th>
+                        <th class="text-end pe-4">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for scan in scans %}
+                    <tr>
+                        <td class="ps-4">
+                            <img src="{{ scan.image_url }}" alt="Thumbnail" class="scan-thumb rounded-3 shadow-sm border">
+                        </td>
+                        <td>
+                            {% if scan.disease_name.startswith('Inconclusive') or scan.confidence < 50.0 %}
+                                <div class="fw-bold text-secondary"><i class="bi bi-shield-x text-warning me-1"></i> Inconclusive Scan</div>
+                                <small class="text-muted">Diagnosis Void (Scan #{{ scan.id }})</small>
+                            {% else %}
+                                <div class="fw-bold text-dark">{{ scan.disease_name }}</div>
+                                <small class="text-muted">Scan #{{ scan.id }}</small>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if scan.disease_name.startswith('Inconclusive') or scan.confidence < 50.0 %}
+                                <span class="badge bg-secondary-subtle text-secondary border">N/A</span>
+                            {% else %}
+                                <div class="d-flex align-items-center gap-2">
+                                    <span class="fw-semibold text-dark">{{ scan.confidence }}%</span>
+                                    <div class="progress rounded-pill flex-grow-1" style="width: 70px; height: 6px;">
+                                        <div class="progress-bar bg-primary" style="width: {{ scan.confidence }}%;"></div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <span class="badge bg-light text-secondary border">
+                                {% if scan.storage_type == 'r2' %}
+                                    <i class="bi bi-cloud-check text-primary me-1"></i> Cloudflare R2
+                                {% else %}
+                                    <i class="bi bi-hdd text-secondary me-1"></i> Local
+                                {% endif %}
+                            </span>
+                        </td>
+                        <td class="text-muted small">
+                            {{ scan.created_at.strftime('%Y-%m-%d %H:%M') }}
+                        </td>
+                        <td class="text-end pe-4">
+                            <a href="{{ url_for('result', id=scan.id) }}" class="btn btn-outline-primary btn-sm rounded-pill px-3">
+                                View Report <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% else %}
+    <!-- Empty State -->
+    <div class="card border-0 shadow-sm rounded-4 p-5 text-center my-4">
+        <div class="upload-icon-circle mx-auto mb-3">
+            <i class="bi bi-camera-fill text-muted fs-2"></i>
+        </div>
+        <h4 class="fw-bold text-dark mb-2">No Scan Records Found</h4>
+        <p class="text-muted small mb-4">You have not analyzed any skin lesions yet. Upload your first image to begin tracking your history.</p>
+        <div>
+            <a href="{{ url_for('index') }}" class="btn btn-primary rounded-pill px-4">
+                <i class="bi bi-upload me-2"></i> Perform Your First Scan
+            </a>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

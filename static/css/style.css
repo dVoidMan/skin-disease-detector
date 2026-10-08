@@ -1,0 +1,219 @@
+/* DermAI - Modern Healthcare UI Styling */
+
+:root {
+    --primary-dark: #0f172a;
+    --primary-color: #2563eb;
+    --primary-light: #60a5fa;
+    --accent-color: #0d9488;
+    --bg-light: #f8fafc;
+    --surface-card: #ffffff;
+    --border-color: #e2e8f0;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--bg-light);
+    color: #1e293b;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+/* Navbar */
+.bg-primary-dark {
+    background-color: var(--primary-dark) !important;
+}
+
+.brand-icon-wrapper {
+    width: 38px;
+    height: 38px;
+    background: linear-gradient(135deg, #1d4ed8, #0d9488);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.text-accent {
+    color: #38bdf8;
+}
+
+.hover-text-white:hover {
+    color: #ffffff !important;
+}
+
+/* Hero & Badges */
+.text-primary-gradient {
+    background: linear-gradient(135deg, #2563eb, #0d9488);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.btn-accent {
+    background: linear-gradient(135deg, #0284c7, #0d9488);
+    border: none;
+}
+
+.btn-accent:hover {
+    background: linear-gradient(135deg, #0369a1, #0f766e);
+}
+
+/* Dropzone Upload Component */
+.dropzone-area {
+    background-color: #f8fafc;
+    border-color: #cbd5e1;
+    transition: all 0.25s ease-in-out;
+    cursor: pointer;
+}
+
+.dropzone-area:hover, .dropzone-area.dragover {
+    background-color: #eff6ff;
+    border-color: var(--primary-color);
+}
+
+.border-dashed {
+    border-style: dashed !important;
+}
+
+.upload-icon-circle {
+    width: 72px;
+    height: 72px;
+    background-color: #eff6ff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.preview-image {
+    max-height: 320px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* Step Cards */
+.step-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.step-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08) !important;
+}
+
+.step-badge {
+    width: 36px;
+    height: 36px;
+    background: #eff6ff;
+    color: var(--primary-color);
+    font-weight: 700;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+/* Condition Cards */
+.condition-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.condition-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06) !important;
+}
+
+.text-truncate-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Result Page Components */
+.result-lesion-img {
+    max-height: 380px;
+    width: 100%;
+    object-fit: contain;
+    background-color: #0f172a;
+}
+
+.confidence-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    box-shadow: inset 0 0 0 4px rgba(37, 99, 235, 0.2);
+}
+
+.progress-sm {
+    height: 8px !important;
+}
+
+/* History Thumbnails */
+.scan-thumb {
+    width: 54px;
+    height: 54px;
+    object-fit: cover;
+}
+
+/* Utility Containers */
+.max-w-700 {
+    max-width: 700px;
+}
+
+/* Team & About Section */
+.team-card {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    border: 1px solid var(--border-color);
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.12) !important;
+}
+
+.team-avatar {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #ffffff;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
+}
+
+.team-avatar-sm {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #ffffff;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.1);
+}
+
+.institution-pill {
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(13, 148, 136, 0.08));
+    border: 1px solid rgba(37, 99, 235, 0.2);
+}
+
+/* Print Clean Mode */
+@media print {
+    nav, footer, .btn, .breadcrumb, form {
+        display: none !important;
+    }
+    body {
+        background-color: #ffffff !important;
+    }
+    .card {
+        box-shadow: none !important;
+        border: 1px solid #ddd !important;
+    }
+}

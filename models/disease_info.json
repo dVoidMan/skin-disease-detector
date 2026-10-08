@@ -1,0 +1,219 @@
+{
+  "acne": {
+    "name": "Acne",
+    "medical_term": "Acne Vulgaris",
+    "risk_level": "Low",
+    "badge_class": "bg-info",
+    "summary": "Acne is a common inflammatory skin condition that occurs when hair follicles become plugged with oil (sebum) and dead skin cells, often colonized by Cutibacterium acnes bacteria.",
+    "common_symptoms": [
+      "Whiteheads (closed plugged pores)",
+      "Blackheads (open plugged pores)",
+      "Small red, tender bumps (papules)",
+      "Pimples (pustules) with pus at the tips",
+      "Large, solid, painful lumps beneath the skin (nodules or cysts)"
+    ],
+    "possible_causes": [
+      "Excess sebum (oil) production",
+      "Hair follicles clogged by oil and dead skin cells",
+      "Bacterial colonization (Cutibacterium acnes)",
+      "Hormonal fluctuations (puberty, menstrual cycle, stress)",
+      "Certain medications or pore-clogging cosmetics"
+    ],
+    "self_care_precautions": [
+      "Wash your face twice daily with a gentle, non-comedogenic cleanser.",
+      "Avoid scrubbing aggressively or picking/popping pimples to prevent scarring.",
+      "Use over-the-counter topical treatments containing salicylic acid or benzoyl peroxide.",
+      "Choose oil-free, non-comedogenic moisturizers and sunscreens.",
+      "Wash pillowcases and avoid touching your face frequently."
+    ],
+    "when_to_see_doctor": "Consult a dermatologist if over-the-counter treatments do not show improvement after 6–8 weeks, if you experience deep, painful cystic acne, or if dark marks and scars begin forming."
+  },
+  "eczema": {
+    "name": "Eczema",
+    "medical_term": "Atopic Dermatitis",
+    "risk_level": "Moderate",
+    "badge_class": "bg-warning",
+    "summary": "Eczema is a chronic inflammatory skin condition characterized by dry, itchy, red, and swollen patches. It frequently occurs in the folds of the elbows, behind the knees, and on the hands or neck.",
+    "common_symptoms": [
+      "Intense itching (pruritus), especially at night",
+      "Dry, cracked, or scaly skin patches",
+      "Red, brown, or grayish-purple skin discoloration",
+      "Small, raised bumps that may leak fluid and crust over when scratched",
+      "Raw, sensitive, or swollen skin from repeated scratching"
+    ],
+    "possible_causes": [
+      "Genetics and impaired epidermal barrier function (filaggrin deficiency)",
+      "Immune system hyper-reactivity",
+      "Environmental allergens (dust mites, pollen, pet dander)",
+      "Irritants (harsh soaps, detergents, wool fabrics)",
+      "Cold, dry weather and psychological stress"
+    ],
+    "self_care_precautions": [
+      "Moisturize frequently with thick, fragrance-free ointments or creams (e.g., ceramide-based).",
+      "Take short, lukewarm showers rather than hot baths (limit to 10 minutes).",
+      "Apply moisturizer immediately within 3 minutes of bathing to lock in moisture.",
+      "Use mild, soap-free cleansers and fragrance-free laundry detergents.",
+      "Wear loose, soft cotton clothing and keep fingernails trimmed to minimize scratch trauma."
+    ],
+    "when_to_see_doctor": "Seek medical attention if itching severely disrupts sleep or daily activities, if skin shows signs of secondary infection (yellow crusting, pus, increased warmth/pain), or if symptoms spread rapidly."
+  },
+  "psoriasis": {
+    "name": "Psoriasis",
+    "medical_term": "Psoriasis Vulgaris",
+    "risk_level": "Moderate",
+    "badge_class": "bg-warning",
+    "summary": "Psoriasis is an autoimmune condition that accelerates the life cycle of skin cells, leading to rapid cell buildup on the surface that forms thick, silvery scales and itchy, dry, red patches.",
+    "common_symptoms": [
+      "Well-demarcated red patches covered with thick, silvery scales",
+      "Dry, cracked skin that may bleed",
+      "Itching, burning sensations, or soreness",
+      "Thickened, pitted, or ridged fingernails",
+      "Swollen and stiff joints (in cases of psoriatic arthritis)"
+    ],
+    "possible_causes": [
+      "Autoimmune dysregulation (overactive T-cells attacking healthy skin tissue)",
+      "Genetic predisposition",
+      "Triggers including skin injuries (Koebner phenomenon), stress, infections, and cold weather",
+      "Certain medications (beta-blockers, lithium)"
+    ],
+    "self_care_precautions": [
+      "Keep skin thoroughly moisturized with rich ointments or petroleum jelly.",
+      "Take warm baths with colloidal oatmeal or Epsom salts to soothe irritation.",
+      "Obtain brief, controlled exposure to natural sunlight (consult your doctor first).",
+      "Avoid known personal triggers such as alcohol, smoking, and chronic stress.",
+      "Do not pick or aggressively peel scales, as this can worsen flare-ups."
+    ],
+    "when_to_see_doctor": "Consult a healthcare provider for prescription topical corticosteroids, phototherapy, or biologic therapies, especially if patches cover large areas or accompany joint pain."
+  },
+  "ringworm": {
+    "name": "Ringworm",
+    "medical_term": "Tinea Corporis",
+    "risk_level": "Moderate",
+    "badge_class": "bg-warning",
+    "summary": "Despite its name, ringworm is not caused by a worm. It is a contagious superficial fungal infection caused by dermatophytes, presenting as circular, raised, red rings with clearer skin in the center.",
+    "common_symptoms": [
+      "A circular or ring-shaped rash with raised, scaly borders",
+      "Clear or normal-looking skin inside the ring perimeter",
+      "Pruritus (itching) and mild stinging sensation",
+      "Overlapping or expanding circular lesions"
+    ],
+    "possible_causes": [
+      "Direct skin-to-skin contact with an infected person",
+      "Contact with infected animals (cats, dogs, cattle)",
+      "Contact with contaminated objects (towels, bedding, athletic equipment)",
+      "Warm, humid environments and excessive perspiration"
+    ],
+    "self_care_precautions": [
+      "Apply over-the-counter topical antifungal cream (e.g., clotrimazole, terbinafine, miconazole) as directed.",
+      "Continue antifungal application for at least 1–2 weeks after symptoms clear to prevent recurrence.",
+      "Keep the affected skin clean and completely dry.",
+      "Do not share towels, clothing, hairbrushes, or bedding with others.",
+      "Wash infected linens and workout clothes in hot water."
+    ],
+    "when_to_see_doctor": "Seek medical evaluation if the rash does not improve after 2 weeks of antifungal treatment, if it spreads to the scalp or nails, or if severe pain or swelling develops."
+  },
+  "vitiligo": {
+    "name": "Vitiligo",
+    "medical_term": "Vitiligo",
+    "risk_level": "Low",
+    "badge_class": "bg-info",
+    "summary": "Vitiligo is a chronic autoimmune condition in which the immune system mistakenly attacks melanocytes (pigment-producing cells), resulting in smooth, depigmented white patches on various areas of the body.",
+    "common_symptoms": [
+      "Loss of skin color in blotches, typically appearing first on hands, face, and around body openings",
+      "Premature whitening or graying of hair on the scalp, eyelashes, eyebrows, or beard",
+      "Loss of color in the tissues that line the inside of the mouth and nose (mucous membranes)",
+      "Often symmetrical appearance on both sides of the body"
+    ],
+    "possible_causes": [
+      "Autoimmune destruction of cutaneous melanocytes",
+      "Genetic factors (family history of vitiligo or other autoimmune diseases)",
+      "Trigger events such as severe sunburn, emotional trauma, or chemical exposure"
+    ],
+    "self_care_precautions": [
+      "Apply broad-spectrum, water-resistant sunscreen (SPF 30+) diligently to protect depigmented skin from severe sunburn.",
+      "Wear UV-protective clothing and wide-brimmed hats when outdoors.",
+      "Avoid getting tattoos or skin injuries, as pigment loss can occur at injury sites.",
+      "Consider safe cosmetic concealers or self-tanning lotions for color uniformity if desired."
+    ],
+    "when_to_see_doctor": "Consult a dermatologist early if you notice spreading white patches to discuss medical treatments such as topical calcineurin inhibitors, targeted phototherapy, or oral medications."
+  },
+  "melanoma": {
+    "name": "Melanoma",
+    "medical_term": "Malignant Melanoma",
+    "risk_level": "Critical",
+    "badge_class": "bg-danger",
+    "summary": "Melanoma is the most serious form of skin cancer. It develops in the melanocytes and can rapidly invade nearby tissues and spread (metastasize) to distant organs if not detected and treated early.",
+    "common_symptoms": [
+      "A - Asymmetry: One half of a mole or spot does not match the other half",
+      "B - Border: Irregular, scalloped, notched, or poorly defined edges",
+      "C - Color: Varied shades of brown or black, sometimes with patches of pink, red, white, or blue",
+      "D - Diameter: Usually greater than 6mm (pencil eraser size), though can be smaller",
+      "E - Evolving: A mole or skin lesion that is changing in size, shape, color, or elevation, or that begins itching, bleeding, or crusting"
+    ],
+    "possible_causes": [
+      "Intense, intermittent ultraviolet (UV) radiation exposure from sunlight or tanning beds",
+      "Multiple severe, blistering sunburns in childhood or adolescence",
+      "Having many moles (especially atypical or dysplastic nevi)",
+      "Fair skin, light hair, and personal/family history of skin cancer",
+      "Weakened immune system"
+    ],
+    "self_care_precautions": [
+      "CRITICAL: Do NOT attempt any self-treatment, home remedies, or scratching of suspected lesions.",
+      "Protect your skin with broad-spectrum SPF 50+ sunscreen daily.",
+      "Perform monthly self-skin examinations using a full-length mirror.",
+      "Take clear, dated photographs of the lesion to show the dermatologist."
+    ],
+    "when_to_see_doctor": "IMMEDIATE ATTENTION REQUIRED: If any mole or spot shows ABCDE warning signs, grows rapidly, bleeds, or changes color, schedule an urgent in-person evaluation with a certified dermatologist or oncologist immediately."
+  },
+  "melanocytic_nevus": {
+    "name": "Melanocytic Nevus",
+    "medical_term": "Common Mole (Benign)",
+    "risk_level": "Low",
+    "badge_class": "bg-success",
+    "summary": "A melanocytic nevus is a common, non-cancerous (benign) skin growth formed by clusters of pigment-producing melanocytes. Most adults have between 10 and 40 benign moles.",
+    "common_symptoms": [
+      "Evenly colored spot (usually pink, tan, brown, or black)",
+      "Round or oval shape with smooth, well-defined borders",
+      "Flat (macule) or slightly raised dome-shaped bump (papule)",
+      "Generally stable size under 6mm across",
+      "May occasionally sprout small hairs"
+    ],
+    "possible_causes": [
+      "Normal localized proliferation of melanocytes",
+      "Genetic inheritance and sun exposure during childhood",
+      "Hormonal changes during pregnancy or adolescence"
+    ],
+    "self_care_precautions": [
+      "Keep track of moles and perform regular self-checks using the ABCDE criteria.",
+      "Protect skin daily with broad-spectrum sunscreen to prevent cellular UV damage.",
+      "Avoid abrasive scrubbing over raised moles to avoid accidental bleeding."
+    ],
+    "when_to_see_doctor": "Schedule a routine dermatological skin check. If any existing mole changes in size, shape, color, border regularity, or begins bleeding or itching, have it examined promptly."
+  },
+  "dermatitis": {
+    "name": "Contact Dermatitis",
+    "medical_term": "Contact Dermatitis",
+    "risk_level": "Moderate",
+    "badge_class": "bg-warning",
+    "summary": "Contact dermatitis is an itchy, localized red rash caused by direct skin contact with an irritating substance (irritant contact dermatitis) or an allergic trigger (allergic contact dermatitis).",
+    "common_symptoms": [
+      "Red, burning, or intensely itchy rash appearing shortly after contact",
+      "Blisters that may break, ooze, and crust over",
+      "Swelling, tenderness, and increased warmth of the affected area",
+      "Dry, cracked, or leathery skin from prolonged exposure"
+    ],
+    "possible_causes": [
+      "Irritants: Solvents, rubbing alcohol, bleach, detergents, friction",
+      "Allergens: Poison ivy/oak, nickel jewelry, cosmetics, fragrances, topical antibiotics",
+      "Occupational exposures (cleaning agents, chemicals, latex)"
+    ],
+    "self_care_precautions": [
+      "Wash the skin immediately with mild soap and cool water to eliminate residual irritants.",
+      "Identify and strictly avoid future contact with the offending substance.",
+      "Apply cool, wet compresses for 15–30 minutes several times a day to relieve burning.",
+      "Apply over-the-counter 1% hydrocortisone cream or calamine lotion to reduce itching.",
+      "Take oral antihistamines if nighttime itching interferes with rest."
+    ],
+    "when_to_see_doctor": "Consult a physician if the rash covers a substantial portion of the body, involves the eyes or face, develops signs of infection, or does not improve within a week."
+  }
+}

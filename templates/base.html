@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}DermAI | AI-Based Skin Disease Detection{% endblock %}</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block head_extra %}{% endblock %}
+</head>
+<body class="bg-light">
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary-dark sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2 fw-bold" href="{{ url_for('index') }}">
+                <div class="brand-icon-wrapper">
+                    <i class="bi bi-shield-plus fs-4 text-primary-light"></i>
+                </div>
+                <span>Derm<span class="text-accent">AI</span></span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarMain">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-3">
+                    <li class="nav-item">
+                        <a class="nav-link text-white-50 hover-text-white" href="{{ url_for('index') }}">
+                            <i class="bi bi-camera me-1"></i> Scan Lesion
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white-50 hover-text-white" href="{{ url_for('encyclopedia') }}">
+                            <i class="bi bi-journal-medical me-1"></i> Disease Encyclopedia
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white-50 hover-text-white" href="{{ url_for('about') }}">
+                            <i class="bi bi-people me-1"></i> About Team
+                        </a>
+                    </li>
+                    {% if current_user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link text-white-50 hover-text-white" href="{{ url_for('history') }}">
+                            <i class="bi bi-clock-history me-1"></i> My Scan History
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+
+                <div class="d-flex align-items-center gap-2">
+                    {% if current_user.is_authenticated %}
+                        <div class="dropdown">
+                            <button class="btn btn-outline-light btn-sm dropdown-toggle rounded-pill px-3 py-1 d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown">
+                                <i class="bi bi-person-circle"></i>
+                                <span>{{ current_user.username }}</span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 mt-2">
+                                <li>
+                                    <a class="dropdown-item d-flex align-items-center gap-2" href="{{ url_for('history') }}">
+                                        <i class="bi bi-card-checklist text-primary"></i> Scan Records
+                                    </a>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <a class="dropdown-item text-danger d-flex align-items-center gap-2" href="{{ url_for('logout') }}">
+                                        <i class="bi bi-box-arrow-right"></i> Sign Out
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    {% else %}
+                        <a href="{{ url_for('login') }}" class="btn btn-outline-light btn-sm rounded-pill px-3">
+                            <i class="bi bi-box-arrow-in-right me-1"></i> Sign In
+                        </a>
+                        <a href="{{ url_for('register') }}" class="btn btn-accent btn-sm rounded-pill px-3 text-white fw-semibold">
+                            Get Started
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Flash Notifications -->
+    <div class="container mt-3">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category if category != 'error' else 'danger' }} alert-dismissible fade show shadow-sm rounded-3 border-0" role="alert">
+                        <div class="d-flex align-items-center gap-2">
+                            {% if category == 'success' %}
+                                <i class="bi bi-check-circle-fill text-success fs-5"></i>
+                            {% elif category == 'danger' %}
+                                <i class="bi bi-exclamation-triangle-fill text-danger fs-5"></i>
+                            {% else %}
+                                <i class="bi bi-info-circle-fill text-info fs-5"></i>
+                            {% endif %}
+                            <div>{{ message }}</div>
+                        </div>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <!-- Main Content Body -->
+    <main class="py-4">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Educational & Clinical Disclaimer Banner -->
+    <footer class="bg-white border-top mt-5 pt-5 pb-4 text-muted">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-5">
+                    <div class="d-flex align-items-center gap-2 fw-bold text-dark fs-5 mb-2">
+                        <i class="bi bi-shield-plus text-primary"></i> DermAI
+                    </div>
+                    <p class="small text-secondary mb-3">
+                        An intelligent assistive screening platform utilizing deep convolutional neural networks for the early classification of common dermatological conditions.
+                    </p>
+                    <div class="d-flex gap-2">
+                        <span class="badge bg-light text-dark border"><i class="bi bi-cpu me-1"></i> MobileNetV2 CNN</span>
+                        <span class="badge bg-light text-dark border"><i class="bi bi-cloud-arrow-up me-1"></i> Cloudflare R2 Ready</span>
+                        <span class="badge bg-light text-dark border"><i class="bi bi-box me-1"></i> Dockerized</span>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <h6 class="text-dark fw-bold mb-3">Navigation</h6>
+                    <ul class="list-unstyled small d-flex flex-column gap-2">
+                        <li><a href="{{ url_for('index') }}" class="text-decoration-none text-secondary">Upload & Scan</a></li>
+                        <li><a href="{{ url_for('encyclopedia') }}" class="text-decoration-none text-secondary">Disease Encyclopedia</a></li>
+                        <li><a href="{{ url_for('about') }}" class="text-decoration-none text-secondary">About Project & Team</a></li>
+                        <li><a href="{{ url_for('history') }}" class="text-decoration-none text-secondary">Scan History</a></li>
+                        <li><a href="{{ url_for('health') }}" class="text-decoration-none text-secondary">System Healthcheck</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="p-3 bg-warning-subtle rounded-3 border border-warning-subtle">
+                        <h6 class="text-warning-emphasis fw-bold mb-1 d-flex align-items-center gap-1">
+                            <i class="bi bi-exclamation-octagon-fill"></i> Medical Disclaimer
+                        </h6>
+                        <p class="small text-dark-emphasis mb-0">
+                            DermAI is strictly intended for educational screening and academic research purposes. It is <strong>NOT a replacement for a certified dermatologist</strong>. If you suspect melanoma or experience pain, rapid bleeding, or severe irritation, seek immediate medical care.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="my-4 text-secondary">
+
+            <div class="d-flex flex-wrap justify-content-between align-items-center small text-secondary gap-2">
+                <div>
+                    &copy; 2026 <strong>DermAI System</strong> | Moshood Abiola Polytechnic (MAPOLY).
+                    <span class="d-block d-md-inline ms-md-1">
+                        Developed by <strong>Lawal Reinhard Oluwatimilehin</strong> &amp; <strong>Ogunsanya David Iyanuoluwa</strong> under the supervision of <strong>Mrs Adesina</strong>.
+                    </span>
+                </div>
+                <div>Designed with Flask, TensorFlow &amp; MobileNetV2</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5.3 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom Scripts -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,380 @@
+{% extends "base.html" %}
+
+{% block title %}
+{% if is_valid %}
+Scan Result: {{ record.disease_name }} | DermAI
+{% else %}
+Inconclusive Scan Result | DermAI
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="container py-3">
+    <!-- Top breadcrumb & back button -->
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+        <a href="{{ url_for('index') }}" class="btn btn-outline-secondary btn-sm rounded-pill px-3">
+            <i class="bi bi-arrow-left me-1"></i> Scan New Image
+        </a>
+        <div class="d-flex align-items-center gap-2">
+            <span class="badge bg-light text-secondary border">Scan ID #{{ record.id }}</span>
+            <span class="badge bg-light text-secondary border"><i class="bi bi-calendar3 me-1"></i> {{ record.created_at.strftime('%b %d, %Y - %H:%M') }}</span>
+            <button onclick="window.print()" class="btn btn-outline-primary btn-sm rounded-pill px-3">
+                <i class="bi bi-printer me-1"></i> Print / Save PDF
+            </button>
+        </div>
+    </div>
+
+    {% if not is_valid %}
+    <!-- ========================================== -->
+    <!-- INCONCLUSIVE / REJECTED SCAN VIEW          -->
+    <!-- No classification or disease is suggested  -->
+    <!-- ========================================== -->
+
+    <!-- Top Alert Banner -->
+    <div class="alert alert-warning shadow-sm rounded-4 border-0 p-4 mb-4">
+        <div class="d-flex align-items-start gap-3">
+            <i class="bi bi-shield-exclamation fs-1 text-warning flex-shrink-0"></i>
+            <div>
+                <h5 class="fw-bold text-dark mb-1">
+                    {% if meta.get('is_skin') == false %}
+                        Non-Skin Image Detected (Skin Color Area: {{ meta.get('skin_ratio', 0) }}%)
+                    {% elif meta.get('is_scene_cluttered') %}
+                        Complex Scene / Room Environment Detected (Structural Complexity: {{ meta.get('edge_density', 0) }}%)
+                    {% else %}
+                        Inconclusive Image / Low Screening Confidence
+                    {% endif %}
+                </h5>
+                <p class="mb-2 text-secondary leading-relaxed">
+                    {{ meta.get('warning_message') or "The uploaded photograph does not meet dermatological screening requirements. To prevent clinical errors, no disease diagnosis or probabilities have been assigned." }}
+                </p>
+                <div class="d-flex gap-2 mt-2">
+                    <a href="{{ url_for('index') }}" class="btn btn-dark btn-sm rounded-pill px-3">
+                        <i class="bi bi-camera me-1"></i> Upload a Clear Skin Lesion
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <!-- Left Column: Uploaded Image & Quality Inspection -->
+        <div class="col-lg-5">
+            <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4">
+                <div class="card-header bg-white border-bottom p-3 px-4 d-flex justify-content-between align-items-center">
+                    <h5 class="fw-bold text-dark mb-0">
+                        <i class="bi bi-image text-primary me-2"></i>Uploaded Photo
+                    </h5>
+                    <span class="badge bg-warning text-dark"><i class="bi bi-exclamation-triangle me-1"></i>Inconclusive</span>
+                </div>
+                <div class="card-body p-0 text-center bg-dark">
+                    <img src="{{ record.image_url }}" alt="Uploaded Image" class="img-fluid result-lesion-img">
+                </div>
+                <div class="card-footer bg-light p-3 px-4 small text-muted d-flex justify-content-between">
+                    <span><i class="bi bi-hdd-network me-1"></i> Storage: <strong>{{ record.storage_type|upper }}</strong></span>
+                    <span><i class="bi bi-shield-x text-warning me-1"></i> Preprocessed: 224x224 RGB</span>
+                </div>
+            </div>
+
+            <!-- Quality Assessment Card (Replaces fake probabilities) -->
+            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
+                <h6 class="fw-bold text-dark mb-3">
+                    <i class="bi bi-clipboard2-pulse text-primary me-2"></i>Image Quality Diagnostics
+                </h6>
+                <div class="d-flex flex-column gap-3">
+                    <div class="p-3 bg-light rounded-3">
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <span class="small fw-semibold text-dark">Skin Chromaticity Match</span>
+                            <span class="badge {% if meta.get('is_skin') %}bg-success{% else %}bg-danger{% endif %} rounded-pill">
+                                {{ meta.get('skin_ratio', 0) }}% (Req: ≥ 25%)
+                            </span>
+                        </div>
+                        <small class="text-muted d-block">Proportion of pixels matching human skin tones in YCbCr color space.</small>
+                    </div>
+
+                    <div class="p-3 bg-light rounded-3">
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <span class="small fw-semibold text-dark">Structural Edge Complexity</span>
+                            <span class="badge {% if meta.get('is_scene_cluttered') %}bg-danger{% else %}bg-success{% endif %} rounded-pill">
+                                {{ meta.get('edge_density', 0) }}% (Limit: &lt; 8%)
+                            </span>
+                        </div>
+                        <small class="text-muted d-block">Detects room architecture, furniture, clothing, or crowds.</small>
+                    </div>
+
+                    <div class="p-3 bg-light rounded-3">
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <span class="small fw-semibold text-dark">Diagnostic Status</span>
+                            <span class="badge bg-secondary rounded-pill">Classification Voided</span>
+                        </div>
+                        <small class="text-muted d-block">AI screening was safely aborted to avoid false diagnostic suggestions.</small>
+                    </div>
+                </div>
+            </div>
+
+            {% if record.patient_notes %}
+            <div class="card border-0 shadow-sm rounded-4 p-3 px-4 mb-4 bg-light">
+                <h6 class="fw-bold text-dark mb-1 small"><i class="bi bi-journal-text me-1 text-primary"></i> Patient Notes:</h6>
+                <p class="text-secondary small mb-0">{{ record.patient_notes }}</p>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Right Column: Rejection Reason & Photography Guidelines -->
+        <div class="col-lg-7">
+            <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 mb-4">
+                <div class="d-flex justify-content-between align-items-start flex-wrap gap-2 mb-3">
+                    <div>
+                        <span class="badge bg-secondary rounded-pill px-3 py-1 mb-2">
+                            Screening Status: Inconclusive
+                        </span>
+                        <h2 class="display-6 fw-bold text-dark mb-1">No Classification Suggested</h2>
+                        <div class="text-muted fst-italic">Image Rejected by Clinical Quality Guardrail</div>
+                    </div>
+                    <div class="text-md-end">
+                        <div class="confidence-circle bg-secondary-subtle text-secondary fw-bold">
+                            N/A
+                        </div>
+                        <small class="text-muted d-block mt-1">Diagnosis Void</small>
+                    </div>
+                </div>
+
+                <hr class="my-4">
+
+                <div class="mb-4">
+                    <h5 class="fw-bold text-dark mb-2">
+                        <i class="bi bi-shield-check text-primary me-2"></i>Why Was No Diagnosis Suggested?
+                    </h5>
+                    <p class="text-secondary leading-relaxed">
+                        To protect patient safety and prevent clinical hallucinations, DermAI does not classify images that fail dermatological validation checks. The uploaded photo was flagged because it does not represent a focused, close-up macro view of human skin tissue.
+                    </p>
+                </div>
+
+                <!-- Step-by-step photography guide -->
+                <div class="mb-4">
+                    <h5 class="fw-bold text-dark mb-3">
+                        <i class="bi bi-camera text-success me-2"></i>How to Take an Acceptable Lesion Photo
+                    </h5>
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <div class="p-3 border rounded-3 h-100 bg-white shadow-sm">
+                                <div class="fw-bold text-dark mb-1"><i class="bi bi-arrows-angle-contract text-primary me-2"></i>Close-Up Distance</div>
+                                <div class="small text-muted">Hold camera 4–6 inches (10–15 cm) away directly over the skin lesion.</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="p-3 border rounded-3 h-100 bg-white shadow-sm">
+                                <div class="fw-bold text-dark mb-1"><i class="bi bi-sun text-warning me-2"></i>Bright Natural Light</div>
+                                <div class="small text-muted">Use indirect daylight. Avoid flash glare, yellow bulbs, or harsh shadows.</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="p-3 border rounded-3 h-100 bg-white shadow-sm">
+                                <div class="fw-bold text-dark mb-1"><i class="bi bi-crop text-info me-2"></i>Exclude Backgrounds</div>
+                                <div class="small text-muted">Do not include clothes, walls, furniture, or multiple people in the frame.</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="p-3 border rounded-3 h-100 bg-white shadow-sm">
+                                <div class="fw-bold text-dark mb-1"><i class="bi bi-bullseye text-danger me-2"></i>Sharp Tap-To-Focus</div>
+                                <div class="small text-muted">Tap your screen to lock focus on the skin texture and prevent motion blur.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-wrap gap-2 my-4">
+                    <a href="{{ url_for('index') }}" class="btn btn-primary rounded-pill px-4 py-2">
+                        <i class="bi bi-camera me-1"></i> Scan a New Skin Lesion
+                    </a>
+                    <a href="{{ url_for('encyclopedia') }}" class="btn btn-outline-secondary rounded-pill px-3 py-2">
+                        <i class="bi bi-book me-1"></i> Browse Disease Encyclopedia
+                    </a>
+                </div>
+
+                <div class="p-4 bg-light rounded-4 border">
+                    <h6 class="fw-bold text-dark mb-1">
+                        <i class="bi bi-hospital text-primary me-2"></i>Clinical Advisory
+                    </h6>
+                    <p class="small text-muted mb-0">
+                        {{ info.when_to_see_doctor }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% else %}
+    <!-- ========================================== -->
+    <!-- VALID LESION SCREENING VIEW               -->
+    <!-- Full disease diagnosis and clinical guide  -->
+    <!-- ========================================== -->
+
+    <!-- Alert for high risk condition -->
+    {% if info.risk_level == 'Critical' %}
+    <div class="alert alert-danger shadow-sm rounded-4 border-0 p-4 mb-4">
+        <div class="d-flex align-items-start gap-3">
+            <i class="bi bi-exclamation-octagon-fill fs-2 text-danger flex-shrink-0"></i>
+            <div>
+                <h5 class="fw-bold text-danger mb-1">High Clinical Priority Flag: {{ record.disease_name }}</h5>
+                <p class="mb-2">
+                    Our deep learning screening engine detected features characteristic of high-risk dermatological conditions.
+                </p>
+                <div class="fw-semibold text-danger-emphasis">
+                    {{ info.when_to_see_doctor }}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="row g-4">
+        <!-- Left Column: Uploaded Image & Prediction Summary -->
+        <div class="col-lg-5">
+            <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4">
+                <div class="card-header bg-white border-bottom p-3 px-4">
+                    <h5 class="fw-bold text-dark mb-0">
+                        <i class="bi bi-image text-primary me-2"></i>Analyzed Skin Lesion
+                    </h5>
+                </div>
+                <div class="card-body p-0 text-center bg-dark">
+                    <img src="{{ record.image_url }}" alt="Analyzed Skin Scan" class="img-fluid result-lesion-img">
+                </div>
+                <div class="card-footer bg-light p-3 px-4 small text-muted d-flex justify-content-between">
+                    <span><i class="bi bi-hdd-network me-1"></i> Storage: <strong>{{ record.storage_type|upper }}</strong></span>
+                    <span><i class="bi bi-check2-circle text-success me-1"></i> Preprocessed: 224x224 RGB</span>
+                </div>
+            </div>
+
+            <!-- Top Probability Breakdown Card -->
+            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
+                <h6 class="fw-bold text-dark mb-3">
+                    <i class="bi bi-bar-chart-line text-primary me-2"></i>Classification Probabilities
+                </h6>
+                <div class="d-flex flex-column gap-3">
+                    {% for item in top_breakdown %}
+                    <div>
+                        <div class="d-flex justify-content-between align-items-center small mb-1">
+                            <span class="fw-semibold text-dark">{{ item.name }}</span>
+                            <span class="text-muted fw-bold">{{ item.probability }}%</span>
+                        </div>
+                        <div class="progress rounded-pill progress-sm">
+                            <div class="progress-bar {% if loop.first %}bg-primary{% else %}bg-secondary-subtle text-dark{% endif %}" 
+                                 role="progressbar" 
+                                 style="width: {{ item.probability }}%;" 
+                                 aria-valuenow="{{ item.probability }}" 
+                                 aria-valuemin="0" 
+                                 aria-valuemax="100">
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            {% if record.patient_notes %}
+            <div class="card border-0 shadow-sm rounded-4 p-3 px-4 mb-4 bg-light">
+                <h6 class="fw-bold text-dark mb-1 small"><i class="bi bi-journal-text me-1 text-primary"></i> Patient Notes:</h6>
+                <p class="text-secondary small mb-0">{{ record.patient_notes }}</p>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Right Column: Diagnostic & Educational Details -->
+        <div class="col-lg-7">
+            <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 mb-4">
+                <!-- Condition Title Header -->
+                <div class="d-flex justify-content-between align-items-start flex-wrap gap-2 mb-3">
+                    <div>
+                        <span class="badge {{ info.badge_class }} rounded-pill px-3 py-1 mb-2">
+                            Risk Level: {{ info.risk_level }}
+                        </span>
+                        <h2 class="display-6 fw-bold text-dark mb-1">{{ record.disease_name }}</h2>
+                        <div class="text-muted fst-italic">{{ info.medical_term }}</div>
+                    </div>
+                    <!-- Confidence Badge -->
+                    <div class="text-md-end">
+                        <div class="confidence-circle bg-primary-subtle text-primary fw-bold">
+                            {{ record.confidence }}%
+                        </div>
+                        <small class="text-muted d-block mt-1">AI Confidence</small>
+                    </div>
+                </div>
+
+                <hr class="my-4">
+
+                <!-- Multimodal AI Clinical Observations if returned by Gemini Vision -->
+                {% if meta.get('clinical_rationale') %}
+                <div class="p-3 mb-4 rounded-3 bg-primary-subtle border border-primary-subtle">
+                    <div class="d-flex align-items-center gap-2 mb-1">
+                        <i class="bi bi-stars text-primary"></i>
+                        <span class="fw-bold small text-primary-emphasis">Multimodal AI Visual Observations</span>
+                    </div>
+                    <p class="small text-primary-emphasis mb-0 leading-relaxed">
+                        {{ meta.get('clinical_rationale') }}
+                    </p>
+                </div>
+                {% endif %}
+
+                <!-- Disease Overview -->
+                <div class="mb-4">
+                    <h5 class="fw-bold text-dark mb-2">
+                        <i class="bi bi-info-circle text-primary me-2"></i>Condition Overview
+                    </h5>
+                    <p class="text-secondary leading-relaxed">
+                        {{ info.summary }}
+                    </p>
+                </div>
+
+                <!-- Common Symptoms -->
+                {% if info.common_symptoms %}
+                <div class="mb-4">
+                    <h5 class="fw-bold text-dark mb-2">
+                        <i class="bi bi-list-check text-primary me-2"></i>Characteristic Symptoms
+                    </h5>
+                    <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
+                        {% for symptom in info.common_symptoms %}
+                        <li class="d-flex align-items-start gap-2 small text-secondary">
+                            <i class="bi bi-check2-circle text-primary fs-6 mt-1 flex-shrink-0"></i>
+                            <span>{{ symptom }}</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+
+                <!-- Self Care Precautions -->
+                {% if info.self_care_precautions %}
+                <div class="mb-4">
+                    <h5 class="fw-bold text-dark mb-2">
+                        <i class="bi bi-heart-pulse text-success me-2"></i>Recommended Self-Care & Precautions
+                    </h5>
+                    <div class="p-3 bg-light rounded-3">
+                        <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
+                            {% for precaution in info.self_care_precautions %}
+                            <li class="d-flex align-items-start gap-2 small text-secondary">
+                                <i class="bi bi-shield-check text-success fs-6 mt-1 flex-shrink-0"></i>
+                                <span>{{ precaution }}</span>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Doctor Advice -->
+                {% if info.when_to_see_doctor %}
+                <div class="p-4 bg-primary-subtle rounded-4 border border-primary-subtle">
+                    <h6 class="fw-bold text-primary-emphasis mb-1">
+                        <i class="bi bi-hospital text-primary me-2"></i>When to Consult a Physician
+                    </h6>
+                    <p class="small text-primary-emphasis mb-0">
+                        {{ info.when_to_see_doctor }}
+                    </p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

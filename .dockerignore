@@ -1,0 +1,17 @@
+.git
+.gitignore
+.dockerignore
+.venv
+venv
+env
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache
+.env
+database/*.db
+static/uploads/*
+!static/uploads/.gitkeep
+README.md
+notebooks/

@@ -1,0 +1,282 @@
+{% extends "base.html" %}
+
+{% block title %}DermAI | AI Skin Disease Detection & Screening{% endblock %}
+
+{% block content %}
+<div class="container py-2">
+    <!-- Hero Header -->
+    <div class="row align-items-center mb-5 gy-4">
+        <div class="col-lg-7">
+            <span class="badge bg-primary-subtle text-primary fw-semibold px-3 py-2 rounded-pill mb-3">
+                <i class="bi bi-stars me-1"></i> Deep Learning Healthcare Assistant
+            </span>
+            <h1 class="display-5 fw-bold text-dark mb-3">
+                Early Skin Disease Screening Powered by <span class="text-primary-gradient">Artificial Intelligence</span>
+            </h1>
+            <p class="lead text-secondary mb-4">
+                Fast, accessible, and automated visual screening for common dermatological conditions including acne, eczema, psoriasis, ringworm, vitiligo, and melanoma.
+            </p>
+            <div class="d-flex flex-wrap gap-3">
+                <a href="#upload-card" class="btn btn-primary btn-lg rounded-pill px-4 shadow-sm">
+                    <i class="bi bi-upload me-2"></i> Scan Skin Lesion
+                </a>
+                <a href="{{ url_for('encyclopedia') }}" class="btn btn-outline-secondary btn-lg rounded-pill px-4">
+                    <i class="bi bi-book me-2"></i> Explore Diseases
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="p-4 bg-white rounded-4 shadow-sm border text-center position-relative overflow-hidden">
+                <div class="d-flex justify-content-around text-center mb-3">
+                    <div>
+                        <h4 class="fw-bold text-primary mb-0">8+</h4>
+                        <small class="text-muted">Diseases Covered</small>
+                    </div>
+                    <div class="vr"></div>
+                    <div>
+                        <h4 class="fw-bold text-success mb-0">&lt; 1s</h4>
+                        <small class="text-muted">Inference Latency</small>
+                    </div>
+                    <div class="vr"></div>
+                    <div>
+                        <h4 class="fw-bold text-info mb-0">224px</h4>
+                        <small class="text-muted">CNN Tensor Spec</small>
+                    </div>
+                </div>
+                <div class="p-3 bg-light rounded-3 text-start small">
+                    <div class="fw-semibold text-dark mb-1"><i class="bi bi-shield-check text-success me-1"></i> Data Privacy & Storage</div>
+                    <div class="text-muted">Images are securely processed and can be optionally saved to your private Cloudflare R2 bucket.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Upload & Analysis Section -->
+    <div id="upload-card" class="row justify-content-center mb-5">
+        <div class="col-lg-9">
+            <div class="card border-0 shadow rounded-4 overflow-hidden">
+                <div class="card-header bg-white border-bottom p-4">
+                    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                        <div>
+                            <h4 class="fw-bold text-dark mb-1">
+                                <i class="bi bi-camera-fill text-primary me-2"></i>Upload Skin Lesion Image
+                            </h4>
+                            <p class="text-muted small mb-0">
+                                Ensure the image is well-lit, clearly in focus, and centered on the affected skin region.
+                            </p>
+                        </div>
+                        <span class="badge bg-light text-secondary border">Supported: JPG, PNG, WEBP</span>
+                    </div>
+                </div>
+
+                <div class="card-body p-4 p-md-5">
+                    <form id="prediction-form" action="{{ url_for('predict') }}" method="POST" enctype="multipart/form-data">
+                        <!-- Drag and Drop Dropzone -->
+                        <div id="dropzone" class="dropzone-area p-5 text-center rounded-4 mb-4 border-2 border-dashed">
+                            <input type="file" id="image-input" name="image" accept="image/jpeg,image/png,image/webp" class="d-none" required>
+                            
+                            <div id="dropzone-empty" class="d-flex flex-column align-items-center">
+                                <div class="upload-icon-circle mb-3">
+                                    <i class="bi bi-cloud-arrow-up text-primary fs-1"></i>
+                                </div>
+                                <h5 class="fw-bold text-dark mb-1">Drag and drop skin image here</h5>
+                                <p class="text-muted small mb-3">or click the button below to browse your files</p>
+                                <button type="button" id="browse-btn" class="btn btn-outline-primary rounded-pill px-4">
+                                    <i class="bi bi-folder2-open me-2"></i> Browse Images
+                                </button>
+                            </div>
+
+                            <!-- Preview container (Initially hidden) -->
+                            <div id="preview-container" class="d-none">
+                                <div class="position-relative d-inline-block">
+                                    <img id="image-preview" src="#" alt="Skin Lesion Preview" class="img-fluid rounded-3 shadow-sm border preview-image">
+                                    <button type="button" id="remove-btn" class="btn btn-danger btn-sm rounded-circle position-absolute top-0 end-0 m-2 shadow" title="Remove Image">
+                                        <i class="bi bi-x-lg"></i>
+                                    </button>
+                                </div>
+                                <div class="mt-3">
+                                    <span id="file-info" class="badge bg-secondary-subtle text-secondary px-3 py-2"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Optional Clinical Note Field -->
+                        <div class="mb-4">
+                            <label for="notes" class="form-label small fw-semibold text-muted">
+                                <i class="bi bi-card-text me-1"></i> Additional Observations / Patient Notes (Optional)
+                            </label>
+                            <textarea class="form-control rounded-3" id="notes" name="notes" rows="2" placeholder="E.g., Itching for 3 days, mild redness on left forearm..."></textarea>
+                        </div>
+
+                        <!-- Action Submit Button -->
+                        <div class="d-grid gap-2">
+                            <button type="submit" id="submit-btn" class="btn btn-primary btn-lg rounded-pill fw-semibold py-3 shadow-sm" disabled>
+                                <span id="btn-text"><i class="bi bi-magic me-2"></i> Analyze Lesion with AI</span>
+                                <span id="btn-spinner" class="spinner-border spinner-border-sm me-2 d-none" role="status" aria-hidden="true"></span>
+                                <span id="btn-loading-text" class="d-none">Processing Image & Running Inference...</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="card-footer bg-light p-3 px-4 border-top">
+                    <div class="d-flex align-items-center gap-2 text-muted small">
+                        <i class="bi bi-shield-lock-fill text-success fs-6"></i>
+                        <span>End-to-end client-side preview. No image is analyzed until you click the Analyze button.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- How It Works Section -->
+    <div class="py-4 mb-5">
+        <div class="text-center mb-5">
+            <h3 class="fw-bold text-dark">How the Screening Pipeline Works</h3>
+            <p class="text-muted">A three-stage streamlined workflow from capture to actionable medical insights</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm rounded-4 p-4 text-center step-card">
+                    <div class="step-badge mb-3">1</div>
+                    <div class="mb-3 text-primary"><i class="bi bi-camera fs-1"></i></div>
+                    <h5 class="fw-bold text-dark mb-2">Image Capture & Preprocessing</h5>
+                    <p class="text-secondary small mb-0">
+                        The lesion photo is validated, standardized to a 224x224 RGB tensor, and normalized for color constancy.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm rounded-4 p-4 text-center step-card">
+                    <div class="step-badge mb-3">2</div>
+                    <div class="mb-3 text-primary"><i class="bi bi-cpu fs-1"></i></div>
+                    <h5 class="fw-bold text-dark mb-2">Deep Learning Inference</h5>
+                    <p class="text-secondary small mb-0">
+                        The convolutional neural network evaluates spatial features and generates a probability distribution across 8 disease classes.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm rounded-4 p-4 text-center step-card">
+                    <div class="step-badge mb-3">3</div>
+                    <div class="mb-3 text-primary"><i class="bi bi-file-earmark-medical fs-1"></i></div>
+                    <h5 class="fw-bold text-dark mb-2">Clinical Insights & Advice</h5>
+                    <p class="text-secondary small mb-0">
+                        Immediate presentation of the top condition, confidence level, self-care precautions, and red-flag warning signs.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Supported Disease Carousel / Cards -->
+    <div class="py-3">
+        <div class="d-flex justify-content-between align-items-end mb-4 flex-wrap gap-2">
+            <div>
+                <h3 class="fw-bold text-dark mb-1">Target Skin Conditions</h3>
+                <p class="text-muted mb-0">Common dermatological disorders recognized by the neural network</p>
+            </div>
+            <a href="{{ url_for('encyclopedia') }}" class="btn btn-outline-primary btn-sm rounded-pill px-3">
+                View Full Encyclopedia <i class="bi bi-arrow-right ms-1"></i>
+            </a>
+        </div>
+
+        <div class="row g-3">
+            {% for key, item in diseases.items() %}
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm rounded-3 p-3 condition-card">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h6 class="fw-bold text-dark mb-0">{{ item.name }}</h6>
+                        <span class="badge {{ item.badge_class }} rounded-pill small">{{ item.risk_level }}</span>
+                    </div>
+                    <p class="text-muted small mb-2 text-truncate-2">{{ item.summary }}</p>
+                    <div class="mt-auto">
+                        <a href="{{ url_for('encyclopedia') }}#{{ key }}" class="text-decoration-none small text-primary fw-semibold">
+                            Read Guide <i class="bi bi-chevron-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- About Project & Research Team Section -->
+    <div id="about" class="py-5 border-top mt-4">
+        <div class="text-center max-w-700 mx-auto mb-5">
+            <span class="badge bg-primary-subtle text-primary fw-semibold px-3 py-2 rounded-pill mb-2">
+                <i class="bi bi-mortarboard-fill me-1"></i> Academic Research Capstone
+            </span>
+            <h3 class="fw-bold text-dark mb-2">About the Project &amp; Development Team</h3>
+            <p class="text-muted">
+                Developed by computer science students at <strong>Moshood Abiola Polytechnic (MAPOLY)</strong> under the academic supervision of <strong>Mrs Adesina</strong>.
+            </p>
+        </div>
+
+        <div class="row g-4 justify-content-center mb-4">
+            <!-- Student 1: Lawal Reinhard Oluwatimilehin -->
+            <div class="col-md-6 col-lg-5">
+                <div class="card h-100 border-0 shadow-sm rounded-4 p-4 text-center team-card bg-white position-relative overflow-hidden">
+                    <div class="position-absolute top-0 start-0 w-100 bg-primary" style="height: 5px;"></div>
+                    <div class="mb-3 mt-2">
+                        <img src="{{ url_for('static', filename='img/team/lawal_reinhard.jpg') }}" 
+                             alt="Lawal Reinhard Oluwatimilehin" 
+                             class="team-avatar img-fluid">
+                    </div>
+                    <h5 class="fw-bold text-dark mb-1">Lawal Reinhard Oluwatimilehin</h5>
+                    <span class="badge bg-primary-subtle text-primary rounded-pill px-3 py-1 mb-2">Lead Developer &amp; DL Researcher</span>
+                    <p class="small text-muted mb-2"><i class="bi bi-building me-1"></i> Moshood Abiola Polytechnic</p>
+                    <p class="small text-secondary mb-0">
+                        Led neural network modeling, MobileNetV2 transfer learning, computer vision preprocessing, and clinical guardrail filters.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Student 2: Ogunsanya David Iyanuoluwa -->
+            <div class="col-md-6 col-lg-5">
+                <div class="card h-100 border-0 shadow-sm rounded-4 p-4 text-center team-card bg-white position-relative overflow-hidden">
+                    <div class="position-absolute top-0 start-0 w-100" style="height: 5px; background-color: var(--accent-color);"></div>
+                    <div class="mb-3 mt-2">
+                        <img src="{{ url_for('static', filename='img/team/ogunsanya_david.jpg') }}" 
+                             alt="Ogunsanya David Iyanuoluwa" 
+                             class="team-avatar img-fluid">
+                    </div>
+                    <h5 class="fw-bold text-dark mb-1">Ogunsanya David Iyanuoluwa</h5>
+                    <span class="badge rounded-pill px-3 py-1 mb-2" style="background-color: #ccfbf1; color: #0f766e;">Full-Stack Systems Engineer</span>
+                    <p class="small text-muted mb-2"><i class="bi bi-building me-1"></i> Moshood Abiola Polytechnic</p>
+                    <p class="small text-secondary mb-0">
+                        Engineered the full-stack Flask architecture, Cloudflare R2 object storage integration, Dockerization, and healthcare user experience.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project Supervisor Spotlight -->
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="card border-0 rounded-4 shadow-sm p-4 bg-white position-relative overflow-hidden">
+                    <div class="position-absolute top-0 start-0 w-100 bg-warning" style="height: 5px;"></div>
+                    <div class="d-flex align-items-center gap-3 flex-wrap">
+                        <div class="p-3 rounded-circle bg-warning-subtle text-warning-emphasis flex-shrink-0">
+                            <i class="bi bi-award-fill fs-2"></i>
+                        </div>
+                        <div class="flex-grow-1">
+                            <span class="badge bg-warning-subtle text-warning-emphasis rounded-pill px-2 py-1 mb-1 small">Project Supervisor</span>
+                            <h5 class="fw-bold text-dark mb-1">Supervised by Mrs Adesina</h5>
+                            <p class="small text-secondary mb-0">
+                                Guided under the expert academic and technical supervision of <strong>Mrs Adesina</strong> at <strong>Moshood Abiola Polytechnic</strong>, ensuring research rigour, clinical evaluation ethics, and system reliability.
+                            </p>
+                        </div>
+                        <div class="ms-auto">
+                            <a href="{{ url_for('about') }}" class="btn btn-outline-primary btn-sm rounded-pill px-3">
+                                Full Project Details <i class="bi bi-arrow-right ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

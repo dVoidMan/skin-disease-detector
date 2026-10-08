@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Based Skin Disease Detection System - Project Documentation & Write-Up Guide</title>
+    <!-- KaTeX for Math Rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+    <!-- Mermaid JS for Diagrams -->
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true, theme: 'default' });
+    </script>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --accent: #0284c7;
+            --text: #1f2937;
+            --muted: #4b5563;
+            --border: #d1d5db;
+            --bg-light: #f8fafc;
+        }
+        * { box-sizing: border-box; }
+        body {
+            font-family: "Georgia", "Times New Roman", serif;
+            color: var(--text);
+            background-color: #e5e7eb;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.65;
+        }
+        .toolbar {
+            max-width: 900px;
+            margin: 0 auto 16px auto;
+            background: #0f172a;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .toolbar button {
+            background: #0284c7;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .toolbar button:hover { background: #0369a1; }
+        .document-page {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 55px 65px;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.08);
+            border-radius: 4px;
+        }
+        .cover-header {
+            text-align: center;
+            border-bottom: 3px double var(--primary);
+            padding-bottom: 28px;
+            margin-bottom: 36px;
+        }
+        .cover-header .badge {
+            font-family: sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 12px;
+            color: var(--accent);
+            font-weight: 700;
+        }
+        h1 {
+            font-size: 26px;
+            color: var(--primary);
+            margin: 10px 0;
+            line-height: 1.3;
+        }
+        h2 {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 20px;
+            color: var(--primary);
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 6px;
+            margin-top: 38px;
+        }
+        h3 {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 16px;
+            color: #0f172a;
+            margin-top: 24px;
+        }
+        p, li { font-size: 15px; text-align: justify; }
+        .abstract-box {
+            background: var(--bg-light);
+            border-left: 4px solid var(--primary);
+            padding: 18px 24px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 13.5px;
+        }
+        th, td {
+            border: 1px solid var(--border);
+            padding: 10px 12px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background-color: #f1f5f9;
+            color: var(--primary);
+            font-weight: 700;
+        }
+        tr:nth-child(even) { background-color: #f8fafc; }
+        .diagram-container {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 22px 0;
+            text-align: center;
+        }
+        .diagram-caption {
+            font-family: sans-serif;
+            font-size: 12.5px;
+            color: var(--muted);
+            margin-top: 10px;
+            font-weight: 600;
+        }
+        pre {
+            background: #0f172a;
+            color: #f8fafc;
+            padding: 16px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: "Consolas", "Courier New", monospace;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        .math-block {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 12px 18px;
+            border-radius: 6px;
+            margin: 14px 0;
+        }
+        @media print {
+            body { background: #fff; padding: 0; }
+            .toolbar { display: none; }
+            .document-page { box-shadow: none; padding: 15px 25px; max-width: 100%; }
+            h2 { page-break-after: avoid; }
+            table, .diagram-container { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="toolbar">
+        <div>
+            <strong>Academic Project Write-Up Reference Guide</strong> &mdash; Ready for PDF Export or MS Word
+        </div>
+        <button onclick="window.print()">Save as PDF / Print</button>
+    </div>
+
+    <div class="document-page">
+        <div class="cover-header">
+            <div class="badge">Final Year / Capstone Technical Reference</div>
+            <h1>DESIGN AND IMPLEMENTATION OF AN AI-BASED SKIN DISEASE DETECTION SYSTEM USING DEEP LEARNING</h1>
+            <p style="text-align: center; color: #4b5563; margin-top: 6px;">
+                Complete Chapter 1 &ndash; Chapter 5 Technical Specification, System Architecture, Workflows, and Mathematical Formulations
+            </p>
+        </div>
+
+        <!-- CHAPTER 1 -->
+        <h2>CHAPTER ONE: INTRODUCTION</h2>
+
+        <h3>1.1 Background of the Study</h3>
+        <p>
+            Dermatological disorders are among the most widespread health conditions globally, affecting individuals across all age groups and socioeconomic backgrounds. Early and accurate identification of skin lesions is critical to preventing chronic progression, disfigurement, and secondary infections. However, in many developing nations and underserved communities, certified dermatologists are scarce and concentrated primarily in major urban centers. Consequently, patients often face prolonged wait times, high consultation fees, or rely on inaccurate self-medication.
+        </p>
+        <p>
+            Recent breakthroughs in Artificial Intelligence (AI), Computer Vision, and Deep Learning—most notably Convolutional Neural Networks (CNNs)—have demonstrated diagnostic capabilities comparable to clinical specialists in visual pattern recognition tasks. By training deep neural networks on curated datasets of dermatological images, an automated screening system can analyze subtle morphological features such as lesion borders, color variations, scaling, and texture to provide rapid preliminary assessments via a web browser.
+        </p>
+
+        <h3>1.2 Abstract</h3>
+        <div class="abstract-box">
+            Skin diseases represent one of the most prevalent global health challenges, affecting millions of individuals across diverse demographics. Early and accurate identification is critical to preventing severe complications; however, access to certified dermatologists remains limited, particularly in underserved and rural regions, leading to delayed diagnosis and self-medication. This project presents the design and implementation of an AI-Based Skin Disease Detection System that leverages Deep Learning—specifically Convolutional Neural Networks (CNN) and Transfer Learning—to classify common dermatological conditions from digital skin images. Images uploaded by users undergo automated preprocessing using OpenCV and Pillow (resizing, RGB normalization, and noise reduction) before being analyzed by a trained TensorFlow/Keras model capable of identifying conditions such as Acne, Eczema, Psoriasis, Ringworm (Tinea), Vitiligo, and Dermatitis. The model is integrated into a responsive web application built with the Python Flask framework, HTML5, CSS3, and JavaScript, backed by a relational database (SQLite/MySQL) for managing user accounts and historical diagnostic logs. In addition to displaying the predicted condition and probability confidence scores, the platform provides curated educational overviews and precautionary guidance while encouraging timely clinical consultation.
+        </div>
+
+        <h3>1.3 Statement of the Problem</h3>
+        <ol>
+            <li><strong>Scarcity of Specialist Dermatologists:</strong> The low ratio of dermatologists to patients in many regions leads to severe bottlenecks in primary healthcare delivery.</li>
+            <li><strong>High Cost of Preliminary Screening:</strong> Routine physical consultations for minor or emerging rashes can be financially prohibitive for many individuals.</li>
+            <li><strong>Visual Overlap Among Skin Disorders:</strong> Conditions such as Eczema, Psoriasis, and Ringworm share overlapping visual traits (redness, scaling, itching), resulting in frequent misdiagnosis by non-specialists.</li>
+            <li><strong>Delayed Medical Intervention:</strong> Lack of accessible awareness tools leads patients to ignore early symptoms until conditions become severe or contagious.</li>
+        </ol>
+
+        <h3>1.4 Aim and Objectives of the Study</h3>
+        <p><strong>Aim:</strong> To design and implement an AI-based web application for the early detection and classification of common skin diseases using Convolutional Neural Networks (CNN).</p>
+        <p><strong>Specific Objectives:</strong></p>
+        <ol>
+            <li>To acquire and preprocess a clinical dataset of skin disease images using OpenCV and Pillow (resizing, color conversion, normalization, and augmentation).</li>
+            <li>To build and train a deep learning classification model using TensorFlow and Keras based on Transfer Learning.</li>
+            <li>To evaluate the trained model using standard performance metrics including Accuracy, Precision, Recall, F1-Score, and a Confusion Matrix.</li>
+            <li>To develop an interactive web interface using Flask, HTML5, CSS3, and JavaScript that enables users to upload skin photographs and receive real-time diagnostic predictions and confidence scores.</li>
+            <li>To design a relational database (SQLite/MySQL) for storing user credentials, scan history, and educational disease information.</li>
+        </ol>
+
+        <h3>1.5 Scope and Limitations</h3>
+        <ul>
+            <li><strong>Scope:</strong> The system classifies macroscopic images across seven classes (Acne, Eczema, Psoriasis, Ringworm, Vitiligo, Contact Dermatitis, and Healthy Skin), provides confidence percentages, logs user scan histories, and presents curated medical precautions.</li>
+            <li><strong>Limitations:</strong> The system is a preliminary decision-support tool and does not replace histological biopsy or physical examination by a licensed physician. Image quality, poor lighting, and camera blur can affect prediction confidence.</li>
+        </ul>
+
+        <!-- CHAPTER 2 -->
+        <h2>CHAPTER TWO: LITERATURE REVIEW & THEORETICAL CONCEPTS</h2>
+
+        <h3>2.1 Convolutional Neural Networks (CNNs) in Medical Imaging</h3>
+        <p>
+            A Convolutional Neural Network (CNN) is a specialized deep learning architecture designed to process grid-structured data such as digital images. Unlike traditional machine learning algorithms that require hand-engineered feature extraction, CNNs automatically learn spatial hierarchies of features through backpropagation:
+        </p>
+        <ul>
+            <li><strong>Convolutional Layers:</strong> Apply learnable filters across the input image to detect edges, pigment boundaries, and lesion textures.</li>
+            <li><strong>Pooling Layers:</strong> Down-sample feature maps to reduce computational complexity and achieve spatial invariance.</li>
+            <li><strong>Fully Connected & Softmax Layers:</strong> Map extracted high-level representations into class probability scores across target skin diseases.</li>
+        </ul>
+
+        <h3>2.2 Mathematical Formulations</h3>
+        <div class="math-block">
+            <p><strong>1. 2D Convolution Operation:</strong> For an input image $I$ and kernel $K$ of size $M \times N$:</p>
+            $$S(i, j) = (I * K)(i, j) = \sum_{m=0}^{M-1} \sum_{n=0}^{N-1} I(i + m, j + n) \cdot K(m, n) + b$$
+            <p><strong>2. ReLU Activation Function:</strong> Introduces non-linearity by zeroing negative values:</p>
+            $$f(x) = \max(0, x)$$
+            <p><strong>3. Softmax Probability Function:</strong> Converts raw output logits $z_i$ for $C$ classes into normalized probabilities:</p>
+            $$P(y = i \mid x) = \frac{e^{z_i}}{\sum_{j=1}^{C} e^{z_j}}$$
+            <p><strong>4. Categorical Cross-Entropy Loss:</strong> Measures divergence between ground-truth labels $y_i$ and predicted probabilities $\hat{y}_i$:</p>
+            $$\mathcal{L}(y, \hat{y}) = -\sum_{i=1}^{C} y_i \log(\hat{y}_i)$$
+        </div>
+
+        <h3>2.3 Target Skin Diseases Covered by the System</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Class ID</th>
+                    <th>Skin Condition</th>
+                    <th>Visual / Clinical Presentation</th>
+                    <th>Primary Symptoms & Advice</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>0</strong></td>
+                    <td><strong>Acne Vulgaris</strong></td>
+                    <td>Comedones (blackheads/whiteheads), erythematous papules, pustules, or nodules on sebaceous areas.</td>
+                    <td>Local inflammation, oily skin; avoid squeezing lesions and use non-comedogenic cleansers.</td>
+                </tr>
+                <tr>
+                    <td><strong>1</strong></td>
+                    <td><strong>Eczema (Atopic Dermatitis)</strong></td>
+                    <td>Ill-defined erythematous patches, dry scaling, excoriations, and lichenification (thickened skin).</td>
+                    <td>Intense itching (pruritus), dryness; apply fragrance-free emollients and avoid harsh soaps.</td>
+                </tr>
+                <tr>
+                    <td><strong>2</strong></td>
+                    <td><strong>Psoriasis</strong></td>
+                    <td>Sharply demarcated red plaques covered with thick silvery-white scales, commonly on extensor surfaces.</td>
+                    <td>Plaques, flaking, mild-to-moderate itching; requires dermatological evaluation for topical therapy.</td>
+                </tr>
+                <tr>
+                    <td><strong>3</strong></td>
+                    <td><strong>Ringworm (Tinea Corporis)</strong></td>
+                    <td>Annular (ring-shaped) erythematous plaque with a raised scaly active margin and central clearing.</td>
+                    <td>Itchy expanding ring; fungal infection requiring topical antifungal medication and hygiene measures.</td>
+                </tr>
+                <tr>
+                    <td><strong>4</strong></td>
+                    <td><strong>Vitiligo</strong></td>
+                    <td>Well-circumscribed chalky-white depigmented macules and patches due to melanocyte loss.</td>
+                    <td>Painless depigmentation; protect depigmented skin with broad-spectrum sunscreen.</td>
+                </tr>
+                <tr>
+                    <td><strong>5</strong></td>
+                    <td><strong>Contact Dermatitis</strong></td>
+                    <td>Localized redness, swelling, and small vesicles/blisters strictly at sites of allergen/irritant exposure.</td>
+                    <td>Burning, stinging, itching; identify and discontinue contact with the causative substance.</td>
+                </tr>
+                <tr>
+                    <td><strong>6</strong></td>
+                    <td><strong>Healthy / Normal Skin</strong></td>
+                    <td>Uniform skin tone, intact epidermal surface, absence of erythema, scaling, or lesions.</td>
+                    <td>Control class used to prevent false-positive diagnoses on unaffected skin.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- CHAPTER 3 -->
+        <h2>CHAPTER THREE: SYSTEM ANALYSIS AND DESIGN</h2>
+
+        <h3>3.1 Machine Learning Training & Preprocessing Pipeline</h3>
+        <div class="diagram-container">
+            <div class="mermaid">
+flowchart LR
+    A["1. Image Acquisition\n(Clinical Dataset)"] --> B["2. Preprocessing\n(Resize 224x224, RGB)"]
+    B --> C["3. Augmentation\n(Rotate, Flip, Zoom)"]
+    C --> D["4. CNN Training\n(Transfer Learning)"]
+    D --> E["5. Model Evaluation\n(F1, Confusion Matrix)"]
+    E --> F["6. Flask Deployment\n(skin_model.keras)"]
+            </div>
+            <div class="diagram-caption">Figure 3.1: Deep Learning Development Pipeline</div>
+        </div>
+
+        <h3>3.2 Three-Tier System Architecture</h3>
+        <div class="diagram-container">
+            <div class="mermaid">
+flowchart TD
+    subgraph Client["Presentation Tier (Frontend)"]
+        UI["HTML5 / CSS3 Responsive Interface"]
+        JS["JavaScript (Image Preview & Client Validation)"]
+    end
+
+    subgraph Server["Application & AI Logic Tier (Flask Backend)"]
+        Routes["Flask Route Controller (app.py)"]
+        Preproc["Image Preprocessor (OpenCV / Pillow)"]
+        CNN["Trained CNN Model (TensorFlow / Keras)"]
+        KB["Disease Knowledge Base (disease_info.json)"]
+    end
+
+    subgraph Data["Data Persistence Tier"]
+        DB[("SQLite / MySQL Database\n(Users & Scan History)")]
+        Files[("Local Upload Storage\n(/static/uploads/)")]
+    end
+
+    UI --> JS
+    JS -->|"HTTP POST Multipart Image"| Routes
+    Routes -->|"Save Image"| Files
+    Routes -->|"Pass Image"| Preproc
+    Preproc -->|"Tensor (1, 224, 224, 3)"| CNN
+    CNN -->|"Probabilities & Confidence %"| Routes
+    KB -->|"Medical Info & Precautions"| Routes
+    Routes -->|"Log Prediction"| DB
+    Routes -->|"Render Diagnosis Report"| UI
+            </div>
+            <div class="diagram-caption">Figure 3.2: High-Level 3-Tier System Architecture</div>
+        </div>
+
+        <h3>3.3 System Operational Flowchart</h3>
+        <div class="diagram-container">
+            <div class="mermaid">
+flowchart TD
+    Start(["Start Application"]) --> Home["Load Home Page"]
+    Home --> SelectImg["User Uploads or Drag-and-Drops Skin Image"]
+    SelectImg --> ValidCheck{"Valid Image Format\n(JPG/PNG & < 10MB)?"}
+    ValidCheck -- "No" --> ErrorMsg["Show Format Validation Error"] --> SelectImg
+    ValidCheck -- "Yes" --> Preview["Render Instant Client-Side Image Preview"]
+    Preview --> Analyze["User Clicks 'Analyze Skin'"]
+    Analyze --> Preproc["OpenCV/Pillow: Convert to RGB, Resize to 224x224, Scale [0,1]"]
+    Preproc --> Inference["CNN Model Forward Pass (Softmax Probabilities)"]
+    Inference --> FetchKB["Fetch Disease Symptoms, Causes & Precautions"]
+    FetchKB --> SaveRecord["Save Prediction & Timestamp to SQLite/MySQL"]
+    SaveRecord --> ShowResult["Display Result Page:\n- Predicted Condition\n- Confidence Meter\n- Medical Disclaimer"]
+    ShowResult --> End(["End"])
+            </div>
+            <div class="diagram-caption">Figure 3.3: End-to-End Application Operational Flowchart</div>
+        </div>
+
+        <h3>3.4 Database Schema Specification</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Table Name</th>
+                    <th>Column Name</th>
+                    <th>Data Type</th>
+                    <th>Constraints & Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td rowspan="5"><strong>users</strong></td>
+                    <td><code>id</code></td>
+                    <td>INTEGER</td>
+                    <td>PRIMARY KEY, AUTOINCREMENT &mdash; Unique user identifier.</td>
+                </tr>
+                <tr>
+                    <td><code>full_name</code></td>
+                    <td>VARCHAR(100)</td>
+                    <td>NOT NULL &mdash; Full name of the user.</td>
+                </tr>
+                <tr>
+                    <td><code>email</code></td>
+                    <td>VARCHAR(120)</td>
+                    <td>UNIQUE, NOT NULL &mdash; User login email address.</td>
+                </tr>
+                <tr>
+                    <td><code>password_hash</code></td>
+                    <td>VARCHAR(255)</td>
+                    <td>NOT NULL &mdash; Bcrypt hashed password.</td>
+                </tr>
+                <tr>
+                    <td><code>created_at</code></td>
+                    <td>DATETIME</td>
+                    <td>DEFAULT CURRENT_TIMESTAMP &mdash; Account creation timestamp.</td>
+                </tr>
+                <tr>
+                    <td rowspan="7"><strong>prediction_history</strong></td>
+                    <td><code>id</code></td>
+                    <td>INTEGER</td>
+                    <td>PRIMARY KEY, AUTOINCREMENT &mdash; Unique scan record ID.</td>
+                </tr>
+                <tr>
+                    <td><code>user_id</code></td>
+                    <td>INTEGER</td>
+                    <td>FOREIGN KEY (<code>users.id</code>) &mdash; Owner of the scan record.</td>
+                </tr>
+                <tr>
+                    <td><code>image_filename</code></td>
+                    <td>VARCHAR(255)</td>
+                    <td>NOT NULL &mdash; Relative path to uploaded image.</td>
+                </tr>
+                <tr>
+                    <td><code>predicted_class</code></td>
+                    <td>VARCHAR(100)</td>
+                    <td>NOT NULL &mdash; Top predicted disease label.</td>
+                </tr>
+                <tr>
+                    <td><code>confidence_score</code></td>
+                    <td>FLOAT</td>
+                    <td>NOT NULL &mdash; Confidence percentage ($0.0 - 100.0$).</td>
+                </tr>
+                <tr>
+                    <td><code>top_predictions_json</code></td>
+                    <td>TEXT</td>
+                    <td>NULLABLE &mdash; JSON breakdown of top 3 class probabilities.</td>
+                </tr>
+                <tr>
+                    <td><code>scanned_at</code></td>
+                    <td>DATETIME</td>
+                    <td>DEFAULT CURRENT_TIMESTAMP &mdash; Timestamp of analysis.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- CHAPTER 4 -->
+        <h2>CHAPTER FOUR: SYSTEM IMPLEMENTATION AND TESTING</h2>
+
+        <h3>4.1 Justification of Selected Technologies</h3>
+        <ul>
+            <li><strong>Python:</strong> Selected as the core language due to its rich ecosystem for deep learning, image processing, and web development.</li>
+            <li><strong>TensorFlow &amp; Keras:</strong> Used to build, train, and serialize the Convolutional Neural Network (<code>.keras</code> / <code>.h5</code>) with GPU acceleration support.</li>
+            <li><strong>OpenCV &amp; Pillow:</strong> Employed for image decoding, RGB channel standardization, and spatial resizing ($224 \times 224$).</li>
+            <li><strong>Flask:</strong> A lightweight Python WSGI micro-framework ideal for hosting deep learning models and serving HTML templates with minimal overhead.</li>
+            <li><strong>HTML5, CSS3 &amp; JavaScript:</strong> Provide a responsive medical interface, interactive drag-and-drop file upload, client-side image preview (via <code>FileReader</code> API), and dynamic confidence progress bars.</li>
+            <li><strong>SQLite / MySQL:</strong> Relational database management system integrated via SQLAlchemy ORM to persist user accounts and diagnostic logs.</li>
+            <li><strong>Google Colab / Jupyter Notebook &amp; VS Code:</strong> Google Colab provides cloud GPU resources for model training, while VS Code is used for full-stack application development.</li>
+        </ul>
+
+        <h3>4.2 Evaluation Metrics for the Deep Learning Model</h3>
+        <div class="math-block">
+            $$\text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN} \qquad \text{Precision} = \frac{TP}{TP + FP}$$
+            $$\text{Recall (Sensitivity)} = \frac{TP}{TP + FN} \qquad \text{F1-Score} = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}$$
+        </div>
+
+        <h3>4.3 System Test Plan &amp; Test Cases</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Test ID</th>
+                    <th>Module Tested</th>
+                    <th>Action / Description</th>
+                    <th>Expected Result</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>TC-01</strong></td>
+                    <td>Authentication</td>
+                    <td>Register new user and log in with valid credentials.</td>
+                    <td>Session initialized; user redirected to dashboard.</td>
+                    <td><strong>PASS</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>TC-02</strong></td>
+                    <td>Input Validation</td>
+                    <td>Attempt to upload a non-image file (e.g., <code>.pdf</code>).</td>
+                    <td>Client and server reject upload with validation message.</td>
+                    <td><strong>PASS</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>TC-03</strong></td>
+                    <td>Image Preview</td>
+                    <td>Select a valid <code>.jpg</code> or <code>.png</code> skin photograph.</td>
+                    <td>Instant preview rendered on page prior to submission.</td>
+                    <td><strong>PASS</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>TC-04</strong></td>
+                    <td>Preprocessing</td>
+                    <td>Pass arbitrary resolution image ($1920 \times 1080$) to pipeline.</td>
+                    <td>Resized to $(1, 224, 224, 3)$ normalized RGB tensor.</td>
+                    <td><strong>PASS</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>TC-05</strong></td>
+                    <td>CNN Inference</td>
+                    <td>Submit test image of a target skin condition.</td>
+                    <td>Returns predicted class, confidence %, and precautions.</td>
+                    <td><strong>PASS</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>TC-06</strong></td>
+                    <td>Database Logging</td>
+                    <td>View user's "Prediction History" page after scanning.</td>
+                    <td>Displays chronological record with image, date, and score.</td>
+                    <td><strong>PASS</strong></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- CHAPTER 5 -->
+        <h2>CHAPTER FIVE: CONCLUSION AND RECOMMENDATIONS</h2>
+
+        <h3>5.1 Conclusion</h3>
+        <p>
+            The AI-Based Skin Disease Detection System successfully demonstrates the practical application of Convolutional Neural Networks and Transfer Learning in preliminary healthcare screening. By bridging a trained TensorFlow/Keras model with an accessible Flask web interface and relational database, the system empowers users to obtain rapid, objective preliminary assessments of common dermatological conditions while promoting early consultation with certified medical professionals.
+        </p>
+
+        <h3>5.2 Recommendations for Future Work</h3>
+        <ol>
+            <li><strong>Explainable AI (Grad-CAM Visualization):</strong> Incorporating Gradient-weighted Class Activation Mapping to highlight the specific visual regions of the skin lesion that influenced the CNN's prediction.</li>
+            <li><strong>Offline Mobile Application:</strong> Exporting the trained model to TensorFlow Lite (<code>.tflite</code>) for native offline execution on Android and iOS smartphones in remote areas without internet connectivity.</li>
+            <li><strong>Multimodal Patient Metadata:</strong> Combining visual image classification with structured clinical symptoms (e.g., duration of rash, presence of fever, itch intensity, patient age) to further improve diagnostic precision.</li>
+            <li><strong>Tele-Dermatology Integration:</strong> Enabling direct sharing of scan reports with verified dermatologists for remote clinical follow-up.</li>
+        </ol>
+    </div>
+
+</body>
+</html>

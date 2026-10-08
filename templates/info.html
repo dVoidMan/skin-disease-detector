@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block title %}Skin Disease Encyclopedia | DermAI{% endblock %}
+
+{% block content %}
+<div class="container py-3">
+    <!-- Header -->
+    <div class="text-center max-w-700 mx-auto mb-5">
+        <span class="badge bg-primary-subtle text-primary fw-semibold px-3 py-2 rounded-pill mb-3">
+            <i class="bi bi-book-half me-1"></i> Medical Knowledge Base
+        </span>
+        <h2 class="display-6 fw-bold text-dark mb-2">Skin Disease Encyclopedia</h2>
+        <p class="text-muted">
+            Comprehensive medical overview of common dermatological disorders, their underlying causes, symptoms, and clinically recognized self-care guidelines.
+        </p>
+
+        <!-- Search Bar -->
+        <div class="input-group shadow-sm rounded-pill overflow-hidden mt-4 border">
+            <span class="input-group-text bg-white border-0 ps-4 text-muted">
+                <i class="bi bi-search"></i>
+            </span>
+            <input type="text" id="disease-search" class="form-control border-0 py-3" placeholder="Search disease by name, symptom, or keyword (e.g. acne, itch, scales)...">
+        </div>
+    </div>
+
+    <!-- Diseases List -->
+    <div class="row g-4" id="disease-list">
+        {% for key, d in diseases.items() %}
+        <div class="col-lg-6 disease-card-item" data-keywords="{{ d.name|lower }} {{ d.medical_term|lower }} {{ d.summary|lower }} {{ d.common_symptoms|join(' ')|lower }}">
+            <div id="{{ key }}" class="card border-0 shadow-sm rounded-4 h-100 p-4 p-md-5">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <div>
+                        <span class="badge {{ d.badge_class }} rounded-pill px-3 py-1 mb-2">
+                            {{ d.risk_level }} Risk
+                        </span>
+                        <h3 class="fw-bold text-dark mb-0">{{ d.name }}</h3>
+                        <small class="text-muted fst-italic">{{ d.medical_term }}</small>
+                    </div>
+                    <a href="{{ url_for('index') }}" class="btn btn-outline-primary btn-sm rounded-pill px-3" title="Test a photo of this condition">
+                        <i class="bi bi-camera me-1"></i> Scan
+                    </a>
+                </div>
+
+                <p class="text-secondary small mb-4 leading-relaxed">
+                    {{ d.summary }}
+                </p>
+
+                <!-- Symptoms -->
+                <div class="mb-3">
+                    <h6 class="fw-bold text-dark mb-2 small"><i class="bi bi-list-check text-primary me-1"></i> Common Symptoms:</h6>
+                    <ul class="list-unstyled mb-0 d-flex flex-column gap-1">
+                        {% for s in d.common_symptoms %}
+                        <li class="small text-secondary d-flex align-items-start gap-2">
+                            <i class="bi bi-dot text-primary fs-5 lh-1"></i>
+                            <span>{{ s }}</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <!-- Self Care -->
+                <div class="p-3 bg-light rounded-3 mb-3">
+                    <h6 class="fw-bold text-dark mb-2 small"><i class="bi bi-heart-pulse text-success me-1"></i> Recommended Self-Care:</h6>
+                    <ul class="list-unstyled mb-0 d-flex flex-column gap-1">
+                        {% for p in d.self_care_precautions[:3] %}
+                        <li class="small text-secondary d-flex align-items-start gap-2">
+                            <i class="bi bi-check2 text-success fs-6 mt-1 flex-shrink-0"></i>
+                            <span>{{ p }}</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <!-- Doctor advice -->
+                <div class="mt-auto pt-2">
+                    <div class="small text-dark-emphasis p-3 bg-warning-subtle rounded-3 border border-warning-subtle">
+                        <strong><i class="bi bi-hospital me-1"></i> Clinical Advice:</strong> {{ d.when_to_see_doctor }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div id="no-results" class="text-center py-5 d-none">
+        <i class="bi bi-search text-muted fs-1 mb-3"></i>
+        <h5 class="fw-bold text-dark">No conditions matched your search</h5>
+        <p class="text-muted small">Try searching for broader terms like "itch", "red", "rash", or "mole".</p>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Live Search Filter for Encyclopedia
+    const searchInput = document.getElementById('disease-search');
+    const cards = document.querySelectorAll('.disease-card-item');
+    const noResults = document.getElementById('no-results');
+
+    if (searchInput) {
+        searchInput.addEventListener('input', function() {
+            const query = this.value.trim().toLowerCase();
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const keywords = card.getAttribute('data-keywords');
+                if (!query || keywords.includes(query)) {
+                    card.classList.remove('d-none');
+                    visibleCount++;
+                } else {
+                    card.classList.add('d-none');
+                }
+            });
+
+            if (visibleCount === 0) {
+                noResults.classList.remove('d-none');
+            } else {
+                noResults.classList.add('d-none');
+            }
+        });
+    }
+</script>
+{% endblock %}

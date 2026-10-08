@@ -1,0 +1,37 @@
+# Virtual Environment
+.venv/
+venv/
+env/
+ENV/
+
+# Python Bytecode & Caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Environment Variables & Secrets
+.env
+.env.local
+
+# Databases
+*.sqlite
+*.db
+database/*.db
+
+# Uploaded User Files (keep .gitkeep)
+static/uploads/*
+!static/uploads/.gitkeep
+
+# Model weights (large binaries - can be uploaded to Cloudflare R2 or downloaded)
+models/*.keras
+models/*.h5
+!models/.gitkeep
+
+# IDE & OS Files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

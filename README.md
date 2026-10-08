@@ -4,7 +4,7 @@ An intelligent healthcare application designed to assist in the early identifica
 
 > 🎓 **Academic Research Project**  
 > **Institution:** Moshood Abiola Polytechnic (MAPOLY), Abeokuta, Ogun State, Nigeria  
-> **Student Researchers / Developers:**  
+> **Researchers:**  
 > - **Lawal Reinhard Oluwatimilehin**  
 > - **Ogunsanya David Iyanuoluwa**  
 > **Project Supervisor:** **Mrs Adesina**  

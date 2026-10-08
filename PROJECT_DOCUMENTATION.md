@@ -2,7 +2,7 @@
 >
 > **Academic Project Attribution**:
 > * **Institution**: Moshood Abiola Polytechnic (MAPOLY), Abeokuta, Ogun State, Nigeria
-> * **Student Researchers & Developers**:
+> * **Researchers**:
 >   1. **Lawal Reinhard Oluwatimilehin**
 >   2. **Ogunsanya David Iyanuoluwa**
 > * **Project Supervisor**: **Mrs Adesina**

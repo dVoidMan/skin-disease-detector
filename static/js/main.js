@@ -50,18 +50,30 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Helper to keep hidden file input synchronized with selected file
+    function syncInputFiles(file) {
+        try {
+            const dt = new DataTransfer();
+            dt.items.add(file);
+            imageInput.files = dt.files;
+        } catch (err) {
+            console.warn('DataTransfer sync warning:', err);
+        }
+    }
+
     // Handle dropped files
     dropzone.addEventListener('drop', (e) => {
         const dt = e.dataTransfer;
-        const files = dt.files;
-        if (files.length > 0) {
-            handleFileSelect(files[0]);
+        if (dt && dt.files && dt.files.length > 0) {
+            const file = dt.files[0];
+            syncInputFiles(file);
+            handleFileSelect(file);
         }
     });
 
     // Handle file chosen through file dialogue
     imageInput.addEventListener('change', (e) => {
-        if (e.target.files.length > 0) {
+        if (e.target.files && e.target.files.length > 0) {
             handleFileSelect(e.target.files[0]);
         }
     });
@@ -80,6 +92,9 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('File exceeds the maximum 16MB size limit.');
             return;
         }
+
+        // Always ensure input files are synchronized
+        syncInputFiles(file);
 
         const reader = new FileReader();
         reader.onload = (e) => {
@@ -102,6 +117,10 @@ document.addEventListener('DOMContentLoaded', () => {
         removeBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             imageInput.value = '';
+            try {
+                const dt = new DataTransfer();
+                imageInput.files = dt.files;
+            } catch (err) {}
             imagePreview.src = '#';
             previewContainer.classList.add('d-none');
             dropzoneEmpty.classList.remove('d-none');
@@ -113,13 +132,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Form Submission UI Progress Feedback
     if (predictionForm) {
-        predictionForm.addEventListener('submit', () => {
-            if (submitBtn) {
-                submitBtn.setAttribute('disabled', 'true');
+        predictionForm.addEventListener('submit', (e) => {
+            if (!imageInput.files || imageInput.files.length === 0) {
+                e.preventDefault();
+                alert('Please upload or drag an image first before analyzing.');
+                return false;
             }
+
+            // Show loading state
             if (btnText) btnText.classList.add('d-none');
             if (btnSpinner) btnSpinner.classList.remove('d-none');
             if (btnLoadingText) btnLoadingText.classList.remove('d-none');
+
+            // Defer disabling the button so browser does not abort the form POST
+            setTimeout(() => {
+                if (submitBtn) {
+                    submitBtn.setAttribute('disabled', 'true');
+                }
+            }, 50);
         });
     }
 });
